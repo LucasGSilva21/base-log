@@ -26,7 +26,11 @@ export class AccountEntity extends BaseEntity implements AggregateRoot<AccountPr
   private _isActive: boolean;
 
   constructor(props: AccountProps) {
-    super(props.id);
+    super(
+      props.id,
+      props.createdAt,
+      props.updatedAt
+    );
     this._name = props.name;
     this._email = props.email;
     this._password = props.password;
