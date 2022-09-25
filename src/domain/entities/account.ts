@@ -12,13 +12,20 @@ export interface AccountProps {
   updatedAt?: Date
 }
 
-export class AccountEntity extends BaseEntity implements AggregateRoot {
+export interface AccountPrimitivesProps {
+  id: string
+  name: string
+  email: string
+  isActive: boolean
+}
+
+export class AccountEntity extends BaseEntity implements AggregateRoot<AccountPrimitivesProps> {
   private _name: string;
   private _email: string;
   private _password: string;
   private _isActive: boolean;
 
-  constructor (props: AccountProps) {
+  constructor(props: AccountProps) {
     super(props.id);
     this._name = props.name;
     this._email = props.email;
@@ -26,19 +33,19 @@ export class AccountEntity extends BaseEntity implements AggregateRoot {
     this._isActive = props.isActive || false;
   }
 
-  get name (): string {
+  get name(): string {
     return this._name;
   }
 
-  get email (): string {
+  get email(): string {
     return this._email;
   }
 
-  get isActive (): boolean {
+  get isActive(): boolean {
     return this._isActive;
   }
 
-  mapperToPrimitives () {
+  mapperToPrimitives(): AccountPrimitivesProps {
     return {
       id: this.id.getValue(),
       name: this.name,

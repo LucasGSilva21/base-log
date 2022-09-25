@@ -1,3 +1,3 @@
-export interface ValueObject {
-  getValue (): any
+export interface ValueObject<T> {
+  getValue(): T
 }
