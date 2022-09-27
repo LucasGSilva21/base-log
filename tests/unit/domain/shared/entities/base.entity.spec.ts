@@ -1,4 +1,5 @@
 import { BaseEntity } from '../../../../../src/domain/shared/entities';
+import { Id } from '../../../../../src/domain/shared/value-objects';
 import MockDate from 'mockdate';
 
 describe('Base Entity', () => {
@@ -10,7 +11,18 @@ describe('Base Entity', () => {
     MockDate.reset();
   });
 
-  test('should instance a new base entity and return the correct values', () => {
+  test('should instantiate a new base entity with parameters', () => {
+    const id = new Id();
+    const createdAt = new Date();
+    const updatedAt = new Date();
+    const base = new BaseEntity(id, createdAt, updatedAt);
+    expect(base).toBeDefined();
+    expect(base.id).toEqual(id);
+    expect(base.createdAt).toEqual(createdAt);
+    expect(base.updatedAt).toEqual(updatedAt);
+  });
+
+  test('should instantiate a new base entity without parameters', () => {
     const base = new BaseEntity();
     expect(base).toBeDefined();
     expect(base.id).toBeDefined();
