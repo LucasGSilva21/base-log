@@ -1,6 +1,6 @@
 import { ValueObject } from '../protocols';
 import { DomainError } from '../errors';
-import { onlyLettersAndSpaces } from '../helpers';
+import { validateName } from '../helpers';
 
 export class Name implements ValueObject<string> {
   private _name: string;
@@ -15,7 +15,7 @@ export class Name implements ValueObject<string> {
   }
 
   private validate(name: string): void {
-    const isValid = onlyLettersAndSpaces(name);
+    const isValid = validateName(name);
     if (!isValid) {
       throw new DomainError('Name');
     }

@@ -1,15 +1,15 @@
-import { onlyLettersAndSpaces } from '../../../../../src/domain/shared/helpers';
+import { validateName } from '../../../../../src/domain/shared/helpers';
 
-describe('OnlyLettersAndSpaces Helper', () => {
-  test('should return true if the string contains only letter and spaces', () => {
+describe('ValidateName Helper', () => {
+  test('should return true if the string contains only letters and spaces', () => {
     const field = 'valid example';
-    const isValid = onlyLettersAndSpaces(field);
+    const isValid = validateName(field);
     expect(isValid).toBe(true);
   });
 
-  test('should return false if the string not contains only letter and spaces', () => {
+  test('should return false if the string not contains only letters and spaces', () => {
     const field = 'invalid example_01';
-    const isValid = onlyLettersAndSpaces(field);
+    const isValid = validateName(field);
     expect(isValid).toBe(false);
   });
 });
