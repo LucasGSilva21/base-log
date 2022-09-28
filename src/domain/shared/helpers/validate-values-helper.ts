@@ -1,3 +1,3 @@
 export const validateName = (value: string): boolean => {
-  return /^[A-Za-z\s]*$/.test(value);
+  return /(?=^([^0-9]*)$)(?=(?!^ +$)^.+$)/.test(value);
 };
