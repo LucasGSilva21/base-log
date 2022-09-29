@@ -2,8 +2,8 @@ import bcrypt from 'bcrypt';
 import { hash, compare } from '../../../../../src/domain/shared/helpers';
 
 jest.mock('bcrypt', () => ({
-  async hash (): Promise<string> {
-    return Promise.resolve('hash');
+  hashSync (): string {
+    return 'hash';
   },
 
   async compare (): Promise<boolean> {
@@ -14,23 +14,22 @@ jest.mock('bcrypt', () => ({
 const salt = 12;
 
 describe('Hash', () => {
-  test('should call hash with correct values', async () => {
-    const hashSpy = jest.spyOn(bcrypt, 'hash');
-    await hash('any_value');
+  test('should call hash with correct values', () => {
+    const hashSpy = jest.spyOn(bcrypt, 'hashSync');
+    hash('any_value');
     expect(hashSpy).toHaveBeenCalledWith('any_value', salt);
   });
 
-  test('should return a valid hash on hash success', async () => {
-    const hashValue = await hash('any_value');
+  test('should return a valid hash on hash success', () => {
+    const hashValue = hash('any_value');
     expect(hashValue).toBe('hash');
   });
 
   test('should throw if hash throws', async () => {
-    jest.spyOn(bcrypt, 'hash').mockImplementationOnce(() => {
+    jest.spyOn(bcrypt, 'hashSync').mockImplementationOnce(() => {
       throw new Error();
     });
-    const promise = hash('any_value');
-    await expect(promise).rejects.toThrow();
+    expect(() => hash('any_value')).toThrow();
   });
 });
 
