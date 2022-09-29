@@ -1,7 +1,7 @@
 import { UserName } from '../../../../../src/domain/shared/value-objects';
 import { DomainError } from '../../../../../src/domain/shared/errors';
 
-describe('Name Value Object', () => {
+describe('UserName Value Object', () => {
   test('should instantiate a new UserName with a valid parameter', () => {
     const validUserName = 'Valid Test';
     const userName = new UserName(validUserName);
