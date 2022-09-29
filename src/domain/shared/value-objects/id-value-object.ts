@@ -19,7 +19,7 @@ export class Id implements ValueObject<string> {
   private validate(id: string): void {
     const isValid = validateUuid(id);
     if (!isValid) {
-      throw new DomainError('Id');
+      throw new DomainError(`The id ${id} is invalid`);
     }
   }
 }

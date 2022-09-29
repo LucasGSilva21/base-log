@@ -11,7 +11,8 @@ describe('Name Value Object', () => {
   });
 
   test('should throw a DomainError if send a invalid name', () => {
-    const invalidName = 'invalid name 123';
+    const invalidName = 'invalid-name-123';
     expect(() => new Name(invalidName)).toThrow(DomainError);
+    expect(() => new Name(invalidName)).toThrow(`The name ${invalidName} is invalid`);
   });
 });

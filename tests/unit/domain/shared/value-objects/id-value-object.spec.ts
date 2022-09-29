@@ -19,7 +19,8 @@ describe('Id Value Object', () => {
   });
 
   test('should throw a DomainError if send a invalid uuid', () => {
-    const invalidUuid = 'invalid uuid';
+    const invalidUuid = 'invalid-uuid';
     expect(() => new Id(invalidUuid)).toThrow(DomainError);
+    expect(() => new Id(invalidUuid)).toThrow(`The id ${invalidUuid} is invalid`);
   });
 });

@@ -17,7 +17,7 @@ export class Name implements ValueObject<string> {
   private validate(name: string): void {
     const isValid = validateName(name);
     if (!isValid) {
-      throw new DomainError('Name');
+      throw new DomainError(`The name ${name} is invalid`);
     }
   }
 }
