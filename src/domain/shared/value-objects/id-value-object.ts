@@ -1,4 +1,4 @@
-import { v4 as uuidv4, validate as validateUuid } from 'uuid';
+import { generateUuid, validateUuid } from '../helpers';
 import { ValueObject } from '../protocols';
 import { DomainError } from '../errors';
 
@@ -9,7 +9,7 @@ export class Id implements ValueObject<string> {
     if (id) {
       this.validate(id);
     }
-    this._id = id || uuidv4();
+    this._id = id || generateUuid();
   }
 
   getValue(): string {
