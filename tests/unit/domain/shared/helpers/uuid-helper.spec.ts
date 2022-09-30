@@ -1,9 +1,23 @@
 import { generateUuid, validateUuid } from '../../../../../src/domain/shared/helpers';
 
+jest.mock('uuid', () => ({
+  v4 (): string {
+    return 'valid-uuid';
+  },
+
+  validate (): boolean {
+    return true;
+  }
+}));
+
 describe('Uuid Helper', () => {
   test('should generate a valid uuid', () => {
     const uuid = generateUuid();
-    expect(uuid).toBeDefined();
+    expect(uuid).toBe('valid-uuid');
+  });
+
+  test('should return true if the compare returns true', () => {
+    const uuid = 'valid-uuid';
     const isValid = validateUuid(uuid);
     expect(isValid).toBe(true);
   });
