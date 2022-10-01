@@ -1,12 +1,12 @@
 import { BaseEntity } from '../shared/entities/base-entity';
 import { AggregateRoot } from '../shared/protocols';
-import { Id } from '../shared/value-objects/id-value-object';
+import { Id, UserName, Email, Password } from '../shared/value-objects';
 
 export interface AccountProps {
   id?: Id
-  name: string
-  email: string
-  password: string
+  name: UserName
+  email: Email
+  password: Password
   isActive?: boolean
   createdAt?: Date
   updatedAt?: Date
@@ -17,12 +17,14 @@ export interface AccountPrimitivesProps {
   name: string
   email: string
   isActive: boolean
+  createdAt: Date
+  updatedAt: Date
 }
 
 export class AccountEntity extends BaseEntity implements AggregateRoot<AccountPrimitivesProps> {
-  private _name: string;
-  private _email: string;
-  private _password: string;
+  private _name: UserName;
+  private _email: Email;
+  private _password: Password;
   private _isActive: boolean;
 
   constructor(props: AccountProps) {
@@ -37,11 +39,11 @@ export class AccountEntity extends BaseEntity implements AggregateRoot<AccountPr
     this._isActive = props.isActive || false;
   }
 
-  get name(): string {
+  get name(): UserName {
     return this._name;
   }
 
-  get email(): string {
+  get email(): Email {
     return this._email;
   }
 
@@ -52,9 +54,11 @@ export class AccountEntity extends BaseEntity implements AggregateRoot<AccountPr
   mapperToPrimitives(): AccountPrimitivesProps {
     return {
       id: this.id.getValue(),
-      name: this.name,
-      email: this.email,
-      isActive: this.isActive
+      name: this.name.getValue(),
+      email: this.email.getValue(),
+      isActive: this.isActive,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt
     };
   }
 }
