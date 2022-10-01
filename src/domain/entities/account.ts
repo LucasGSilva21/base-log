@@ -51,6 +51,10 @@ export class AccountEntity extends BaseEntity implements AggregateRoot<AccountPr
     return this._isActive;
   }
 
+  async comparePassword (value: string): Promise<boolean> {
+    return this._password.comparePassword(value);
+  }
+
   mapperToPrimitives(): AccountPrimitivesProps {
     return {
       id: this.id.getValue(),
