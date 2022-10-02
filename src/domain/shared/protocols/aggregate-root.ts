@@ -1,3 +1,3 @@
-export interface AggregateRoot<T> {
-  mapperToPrimitives(): T
+export interface AggregateRoot<Output> {
+  mapperToPrimitives(): Output
 }
