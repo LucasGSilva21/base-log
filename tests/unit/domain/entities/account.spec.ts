@@ -23,12 +23,12 @@ describe('Account Entity', () => {
   });
 
   test('should instantiate a new AccountEntity', () => {
-    const name = new UserName('Valid Name');
+    const userName = new UserName('Valid Name');
     const email = new Email('valid@email.com');
     const password = new Password({ password: '#Valid123#' });
-    const account = new AccountEntity({ name, email, password });
+    const account = new AccountEntity({ userName, email, password });
     expect(account.id).toBeDefined();
-    expect(account.name).toBe(name);
+    expect(account.userName).toBe(userName);
     expect(account.email).toBe(email);
     expect(account.isActive).toBe(false);
     expect(account.createdAt).toBeDefined();
@@ -38,17 +38,17 @@ describe('Account Entity', () => {
   test('should instantiate a new AccountEntity with all fields', () => {
     const uuid = generateUuid();
     const id = new Id(uuid);
-    const name = new UserName('Valid Name');
+    const userName = new UserName('Valid Name');
     const email = new Email('valid@email.com');
     const password = new Password({ password: '#Valid123#' });
     const isActive = true;
     const createdAt = new Date();
     const updatedAt = new Date();
     const account = new AccountEntity({
-      id, name, email, password, isActive, createdAt, updatedAt
+      id, userName, email, password, isActive, createdAt, updatedAt
     });
     expect(account.id).toBe(id);
-    expect(account.name).toBe(name);
+    expect(account.userName).toBe(userName);
     expect(account.email).toBe(email);
     expect(account.isActive).toBe(true);
     expect(account.createdAt).toBe(createdAt);
@@ -56,10 +56,10 @@ describe('Account Entity', () => {
   });
 
   test('should return true when compare succeds', async () => {
-    const name = new UserName('Valid Name');
+    const userName = new UserName('Valid Name');
     const email = new Email('valid@email.com');
     const password = new Password({ password: '#Valid123#' });
-    const account = new AccountEntity({ name, email, password });
+    const account = new AccountEntity({ userName, email, password });
     const isValid = await account.comparePassword('any_value');
     expect(isValid).toBe(true);
   });
@@ -67,18 +67,18 @@ describe('Account Entity', () => {
   test('should return correct values when call mapper', async () => {
     const uuid = generateUuid();
     const id = new Id(uuid);
-    const name = new UserName('Valid Name');
+    const userName = new UserName('Valid Name');
     const email = new Email('valid@email.com');
     const password = new Password({ password: '#Valid123#' });
     const isActive = true;
     const createdAt = new Date();
     const updatedAt = new Date();
     const account = new AccountEntity({
-      id, name, email, password, isActive, createdAt, updatedAt
+      id, userName, email, password, isActive, createdAt, updatedAt
     });
     const accountPrimitivesProps = await account.mapperToPrimitives();
     expect(accountPrimitivesProps.id).toBe(id.getValue());
-    expect(accountPrimitivesProps.name).toBe(name.getValue());
+    expect(accountPrimitivesProps.userName).toBe(userName.getValue());
     expect(accountPrimitivesProps.email).toBe(email.getValue());
     expect(accountPrimitivesProps.isActive).toBe(true);
     expect(accountPrimitivesProps.createdAt).toBe(createdAt);
