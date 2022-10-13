@@ -13,6 +13,34 @@ jest.mock('bcrypt', () => ({
   }
 }));
 
+interface SutTypes {
+  sut: AccountEntity
+  id: Id
+  userName: UserName
+  email: Email
+  isActive: boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+const makeSut = (): SutTypes => {
+  const uuid = generateUuid();
+  const id = new Id(uuid);
+  const userName = new UserName('Valid Name');
+  const email = new Email('valid@email.com');
+  const password = new Password({ password: '#Valid123#' });
+  const isActive = true;
+  const createdAt = new Date();
+  const updatedAt = new Date();
+  const sut = new AccountEntity({
+    id, userName, email, password, isActive, createdAt, updatedAt
+  });
+
+  return {
+    sut, id, userName, email, isActive, createdAt, updatedAt
+  };
+};
+
 describe('Account Entity', () => {
   beforeAll(() => {
     MockDate.set(new Date());
@@ -22,37 +50,16 @@ describe('Account Entity', () => {
     MockDate.reset();
   });
 
-  test('should instantiate a new AccountEntity with only mandatory fields', () => {
-    const userName = new UserName('Valid Name');
-    const email = new Email('valid@email.com');
-    const password = new Password({ password: '#Valid123#' });
-    const account = new AccountEntity({ userName, email, password });
-    expect(account.id).toBeDefined();
-    expect(account.userName).toBe(userName);
-    expect(account.email).toBe(email);
-    expect(account.isActive).toBe(false);
-    expect(account.createdAt).toBeDefined();
-    expect(account.updatedAt).toBeDefined();
-  });
-
-  test('should instantiate a new AccountEntity with all fields', () => {
-    const uuid = generateUuid();
-    const id = new Id(uuid);
-    const userName = new UserName('Valid Name');
-    const email = new Email('valid@email.com');
-    const password = new Password({ password: '#Valid123#' });
-    const isActive = true;
-    const createdAt = new Date();
-    const updatedAt = new Date();
-    const account = new AccountEntity({
-      id, userName, email, password, isActive, createdAt, updatedAt
-    });
-    expect(account.id).toBe(id);
-    expect(account.userName).toBe(userName);
-    expect(account.email).toBe(email);
-    expect(account.isActive).toBe(true);
-    expect(account.createdAt).toBe(createdAt);
-    expect(account.updatedAt).toBe(updatedAt);
+  test('should instantiate a new AccountEntity', () => {
+    const {
+      sut, id, userName, email, isActive, createdAt, updatedAt
+    } = makeSut();
+    expect(sut.id).toBe(id);
+    expect(sut.userName).toBe(userName);
+    expect(sut.email).toBe(email);
+    expect(sut.isActive).toBe(isActive);
+    expect(sut.createdAt).toBe(createdAt);
+    expect(sut.updatedAt).toBe(updatedAt);
   });
 
   test('should return true when compare succeds', async () => {
@@ -65,22 +72,14 @@ describe('Account Entity', () => {
   });
 
   test('should return correct values when call mapper', () => {
-    const uuid = generateUuid();
-    const id = new Id(uuid);
-    const userName = new UserName('Valid Name');
-    const email = new Email('valid@email.com');
-    const password = new Password({ password: '#Valid123#' });
-    const isActive = true;
-    const createdAt = new Date();
-    const updatedAt = new Date();
-    const account = new AccountEntity({
-      id, userName, email, password, isActive, createdAt, updatedAt
-    });
-    const accountPrimitivesProps = account.mapperToPrimitives();
+    const {
+      sut, id, userName, email, isActive, createdAt, updatedAt
+    } = makeSut();
+    const accountPrimitivesProps = sut.mapperToPrimitives();
     expect(accountPrimitivesProps.id).toBe(id.getValue());
     expect(accountPrimitivesProps.userName).toBe(userName.getValue());
     expect(accountPrimitivesProps.email).toBe(email.getValue());
-    expect(accountPrimitivesProps.isActive).toBe(true);
+    expect(accountPrimitivesProps.isActive).toBe(isActive);
     expect(accountPrimitivesProps.createdAt).toBe(createdAt);
     expect(accountPrimitivesProps.updatedAt).toBe(updatedAt);
   });

@@ -2,6 +2,28 @@ import { BaseEntity } from '../../../../../src/domain/shared/entities';
 import { Id } from '../../../../../src/domain/shared/value-objects';
 import MockDate from 'mockdate';
 
+interface SutTypes {
+  sut: BaseEntity
+  id: Id
+  createdAt: Date
+  updatedAt: Date
+}
+
+const makeSut = (
+  _id?: Id,
+  _createdAt?: Date,
+  _updatedAt?: Date
+): SutTypes => {
+  const id = _id ?? new Id();
+  const createdAt = _createdAt ?? new Date();
+  const updatedAt = _updatedAt ?? new Date();
+  const sut = new BaseEntity(id, createdAt, updatedAt);
+
+  return {
+    sut, id, createdAt, updatedAt
+  };
+};
+
 describe('Base Entity', () => {
   beforeAll(() => {
     MockDate.set(new Date());
@@ -12,29 +34,29 @@ describe('Base Entity', () => {
   });
 
   test('should instantiate a new base entity with parameters', () => {
-    const id = new Id();
-    const createdAt = new Date();
-    const updatedAt = new Date();
-    const base = new BaseEntity(id, createdAt, updatedAt);
-    expect(base).toBeDefined();
-    expect(base.id).toEqual(id);
-    expect(base.createdAt).toEqual(createdAt);
-    expect(base.updatedAt).toEqual(updatedAt);
+    const _id = new Id();
+    const _createdAt = new Date();
+    const _updatedAt = new Date();
+    const { sut, id, createdAt, updatedAt } = makeSut(_id, _createdAt, _updatedAt);
+    expect(sut).toBeDefined();
+    expect(sut.id).toEqual(id);
+    expect(sut.createdAt).toEqual(createdAt);
+    expect(sut.updatedAt).toEqual(updatedAt);
   });
 
   test('should instantiate a new base entity without parameters', () => {
-    const base = new BaseEntity();
-    expect(base).toBeDefined();
-    expect(base.id).toBeDefined();
-    expect(base.createdAt).toEqual(new Date());
-    expect(base.updatedAt).toEqual(new Date());
+    const { sut } = makeSut();
+    expect(sut).toBeDefined();
+    expect(sut.id).toBeDefined();
+    expect(sut.createdAt).toEqual(new Date());
+    expect(sut.updatedAt).toEqual(new Date());
   });
 
   test('should set a new updated at', () => {
-    const base = new BaseEntity();
-    expect(base.updatedAt).toEqual(new Date());
+    const { sut } = makeSut();
+    expect(sut.updatedAt).toEqual(new Date());
     const newUpdatedAt = new Date();
-    base.updatedAt = newUpdatedAt;
-    expect(base.updatedAt).toEqual(newUpdatedAt);
+    sut.updatedAt = newUpdatedAt;
+    expect(sut.updatedAt).toEqual(newUpdatedAt);
   });
 });
