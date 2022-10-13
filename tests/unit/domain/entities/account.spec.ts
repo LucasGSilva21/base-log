@@ -22,7 +22,7 @@ describe('Account Entity', () => {
     MockDate.reset();
   });
 
-  test('should instantiate a new AccountEntity', () => {
+  test('should instantiate a new AccountEntity with only mandatory fields', () => {
     const userName = new UserName('Valid Name');
     const email = new Email('valid@email.com');
     const password = new Password({ password: '#Valid123#' });
@@ -64,7 +64,7 @@ describe('Account Entity', () => {
     expect(isValid).toBe(true);
   });
 
-  test('should return correct values when call mapper', async () => {
+  test('should return correct values when call mapper', () => {
     const uuid = generateUuid();
     const id = new Id(uuid);
     const userName = new UserName('Valid Name');
@@ -76,7 +76,7 @@ describe('Account Entity', () => {
     const account = new AccountEntity({
       id, userName, email, password, isActive, createdAt, updatedAt
     });
-    const accountPrimitivesProps = await account.mapperToPrimitives();
+    const accountPrimitivesProps = account.mapperToPrimitives();
     expect(accountPrimitivesProps.id).toBe(id.getValue());
     expect(accountPrimitivesProps.userName).toBe(userName.getValue());
     expect(accountPrimitivesProps.email).toBe(email.getValue());
