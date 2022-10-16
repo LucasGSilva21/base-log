@@ -2,11 +2,11 @@ import { AccountEntity } from '../../../domain/entities';
 import { UserName, Email, Password } from '../../../domain/shared/value-objects';
 import { UseCase } from '../../shared/protocols';
 import { CreateAccountDto, ResultAccountDto } from '../../dtos/account';
-import { CreateAccountRepository } from '../../repositories/account';
+import { AccountRepository } from '../../repositories';
 
 export class CreateAccountUseCase implements UseCase<CreateAccountDto, ResultAccountDto> {
   constructor (
-    private readonly createAccountRepository: CreateAccountRepository
+    private readonly accountRepository: AccountRepository
   ) {}
 
   async exec (data: CreateAccountDto): Promise<ResultAccountDto> {
@@ -22,7 +22,7 @@ export class CreateAccountUseCase implements UseCase<CreateAccountDto, ResultAcc
       isActive
     });
 
-    const accountCreated = await this.createAccountRepository.create(account);
+    const accountCreated = await this.accountRepository.create(account);
 
     return accountCreated.mapperToPrimitives();
   }
