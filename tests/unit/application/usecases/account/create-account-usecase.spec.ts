@@ -46,6 +46,13 @@ describe('Account Entity', () => {
     MockDate.reset();
   });
 
+  test('Should call findByEmail of AccountRepository with correct values', async () => {
+    const { sut, accountRepositoryStub } = makeSut();
+    const findByEmailSpy = jest.spyOn(accountRepositoryStub, 'findByEmail');
+    await sut.exec(mockCreateAccountData());
+    expect(findByEmailSpy).toHaveBeenCalledWith(mockAccountWithIdSent().email);
+  });
+
   test('Should call create of AccountRepository with correct values', async () => {
     const { sut, accountRepositoryStub } = makeSut();
     const addSpy = jest.spyOn(accountRepositoryStub, 'create');
@@ -53,9 +60,23 @@ describe('Account Entity', () => {
     expect(addSpy).toHaveBeenCalledWith(mockAccountWithIdSent(false));
   });
 
-  test('Should throw if AccountRepository throws', async () => {
+  test('Should throw if findByEmail of AccountRepository throws', async () => {
+    const { sut, accountRepositoryStub } = makeSut();
+    jest.spyOn(accountRepositoryStub, 'findByEmail').mockImplementationOnce(throwError);
+    const promise = sut.exec(mockCreateAccountData());
+    await expect(promise).rejects.toThrow();
+  });
+
+  test('Should throw if create of AccountRepository throws', async () => {
     const { sut, accountRepositoryStub } = makeSut();
     jest.spyOn(accountRepositoryStub, 'create').mockImplementationOnce(throwError);
+    const promise = sut.exec(mockCreateAccountData());
+    await expect(promise).rejects.toThrow();
+  });
+
+  test('Should throw if the email provided already exists', async () => {
+    const { sut, accountRepositoryStub } = makeSut();
+    jest.spyOn(accountRepositoryStub, 'findByEmail').mockResolvedValueOnce(mockAccountWithIdSent());
     const promise = sut.exec(mockCreateAccountData());
     await expect(promise).rejects.toThrow();
   });
