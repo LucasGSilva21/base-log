@@ -7,6 +7,10 @@ export const mockAccountRepository = (): AccountRepository => {
     async create (): Promise<AccountEntity> {
       return Promise.resolve(mockAccountWithoutIdSent());
     }
+
+    async findByEmail(): Promise<AccountEntity> {
+      return Promise.resolve(null);
+    }
   }
 
   return new AccountRepositoryStub();

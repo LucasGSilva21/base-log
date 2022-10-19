@@ -15,6 +15,12 @@ export class CreateAccountUseCase implements UseCase<CreateAccountDto, ResultAcc
     const password = new Password({ password: data.password });
     const isActive = data.isActive;
 
+    const emailAlreadyExists = await this.accountRepository.findByEmail(email);
+
+    if (emailAlreadyExists) {
+      throw new Error(`The email ${email.getValue()} already exists`);
+    }
+
     const account = new AccountEntity({
       userName,
       email,
