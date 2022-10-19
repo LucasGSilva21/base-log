@@ -155,7 +155,7 @@ module.exports = {
   // The glob patterns Jest uses to detect test files
   testMatch: [
     '**/**/*spec.ts'
-  ]
+  ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [
@@ -191,4 +191,13 @@ module.exports = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+
+  // A map from regular expressions to module names or to arrays of module names that allow to stub out resources
+  moduleNameMapper: {
+    '@domain/(.*)': '<rootDir>/src/domain/$1',
+    '@application/(.*)': '<rootDir>/src/application/$1',
+    '@presentation/(.*)': '<rootDir>/src/presentation/$1',
+    '@framework/(.*)': '<rootDir>/src/framework/$1',
+    '@tests/(.*)': '<rootDir>/tests/$1'
+  }
 };

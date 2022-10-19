@@ -25,6 +25,13 @@
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "module-alias": "^2.2.2",
     "uuid": "^9.0.0"
+  },
+  "_moduleAliases": {
+    "@domain": "dist/domain",
+    "@application": "dist/application",
+    "@presentation": "dist/presentation",
+    "@framework": "dist/framework"
   }
 }
