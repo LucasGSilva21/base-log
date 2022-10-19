@@ -1,9 +1,9 @@
-import { CreateAccountUseCase } from '../../../../../src/application/usecases/account';
-import { AccountRepository } from '../../../../../src/application/repositories';
-import { mockAccountWithIdSent } from '../../../../utils/mocks/entities';
-import { mockAccountRepository } from '../../../../utils/mocks/repositories';
-import { mockCreateAccountData } from '../../../../utils/mocks/dtos/account';
-import { throwError } from '../../../../utils/helpers';
+import { CreateAccountUseCase } from '@application/usecases/account';
+import { AccountRepository } from '@application/repositories';
+import { mockAccountWithIdSent } from '@tests/utils/mocks/entities';
+import { mockAccountRepository } from '@tests/utils/mocks/repositories';
+import { mockCreateAccountData } from '@tests/utils/mocks/dtos/account';
+import { throwError } from '@tests/utils/helpers';
 import MockDate from 'mockdate';
 
 jest.mock('bcrypt', () => ({

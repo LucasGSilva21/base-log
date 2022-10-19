@@ -1,6 +1,6 @@
-import { AccountEntity } from '../../../../src/domain/entities';
-import { AccountRepository } from '../../../../src/application/repositories';
-import { mockAccountWithoutIdSent } from '../entities';
+import { AccountEntity } from '@domain/entities';
+import { AccountRepository } from '@application/repositories';
+import { mockAccountWithoutIdSent } from '@tests/utils/mocks/entities';
 
 export const mockAccountRepository = (): AccountRepository => {
   class AccountRepositoryStub implements AccountRepository {

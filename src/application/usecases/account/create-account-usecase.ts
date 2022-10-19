@@ -1,8 +1,8 @@
-import { AccountEntity } from '../../../domain/entities';
-import { UserName, Email, Password } from '../../../domain/shared/value-objects';
-import { UseCase } from '../../shared/protocols';
-import { CreateAccountDto, ResultAccountDto } from '../../dtos/account';
-import { AccountRepository } from '../../repositories';
+import { AccountEntity } from '@domain/entities';
+import { UserName, Email, Password } from '@domain/shared/value-objects';
+import { UseCase } from '@application/shared/protocols';
+import { CreateAccountDto, ResultAccountDto } from '@application/dtos/account';
+import { AccountRepository } from '@application/repositories';
 
 export class CreateAccountUseCase implements UseCase<CreateAccountDto, ResultAccountDto> {
   constructor (

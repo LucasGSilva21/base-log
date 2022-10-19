@@ -1,5 +1,5 @@
-import { Password } from '../../../../../src/domain/shared/value-objects';
-import { DomainError } from '../../../../../src/domain/shared/errors';
+import { Password } from '@domain/shared/value-objects';
+import { DomainError } from '@domain/shared/errors';
 
 jest.mock('bcrypt', () => ({
   hashSync (): string {

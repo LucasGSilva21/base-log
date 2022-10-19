@@ -1,4 +1,4 @@
-import { CreateAccountDto } from '../../../../../src/application/dtos/account';
+import { CreateAccountDto } from '@application/dtos/account';
 
 export const mockCreateAccountData = (): CreateAccountDto => ({
   userName: 'Valid Name',

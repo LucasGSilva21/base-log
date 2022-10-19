@@ -1,6 +1,6 @@
-import { ValueObject } from '../protocols';
-import { DomainError } from '../errors';
-import { validatePassword, hash, compare } from '../helpers';
+import { ValueObject } from '@domain/shared/protocols';
+import { DomainError } from '@domain/shared/errors';
+import { validatePassword, hash, compare } from '@domain/shared/helpers';
 
 interface PasswordInput {
   password?: string

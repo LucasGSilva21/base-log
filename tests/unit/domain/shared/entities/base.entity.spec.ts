@@ -1,5 +1,5 @@
-import { BaseEntity } from '../../../../../src/domain/shared/entities';
-import { Id } from '../../../../../src/domain/shared/value-objects';
+import { BaseEntity } from '@domain/shared/entities';
+import { Id } from '@domain/shared/value-objects';
 import MockDate from 'mockdate';
 
 interface SutTypes {
