@@ -25,7 +25,7 @@ interface SutTypes {
 
 const makeSut = (): SutTypes => {
   const uuid = generateUuid();
-  const id = new Id(uuid);
+  const id = Id.create(uuid);
   const userName = new UserName('Valid Name');
   const email = new Email('valid@email.com');
   const password = new Password({ password: '#Valid123#' });
