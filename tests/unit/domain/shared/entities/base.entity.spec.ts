@@ -14,9 +14,9 @@ const makeSut = (
   _createdAt?: Date,
   _updatedAt?: Date
 ): SutTypes => {
-  const id = _id ?? new Id();
-  const createdAt = _createdAt ?? new Date();
-  const updatedAt = _updatedAt ?? new Date();
+  const id = _id || Id.generateNewId();
+  const createdAt = _createdAt || new Date();
+  const updatedAt = _updatedAt || new Date();
   const sut = new BaseEntity(id, createdAt, updatedAt);
 
   return {
@@ -34,7 +34,7 @@ describe('Base Entity', () => {
   });
 
   test('should instantiate a new base entity with parameters', () => {
-    const _id = new Id();
+    const _id = Id.generateNewId();
     const _createdAt = new Date();
     const _updatedAt = new Date();
     const { sut, id, createdAt, updatedAt } = makeSut(_id, _createdAt, _updatedAt);

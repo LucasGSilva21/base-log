@@ -5,11 +5,13 @@ import { InvalidIdError } from '@domain/shared/errors';
 export class Id implements ValueObject<string> {
   private _id: string;
 
-  constructor(id?: string) {
-    if (id) {
-      this.validate(id);
-    }
-    this._id = id || generateUuid();
+  constructor(id: string) {
+    this.validate(id);
+    this._id = id;
+  }
+
+  static generateNewId(): Id {
+    return new Id(generateUuid());
   }
 
   getValue(): string {

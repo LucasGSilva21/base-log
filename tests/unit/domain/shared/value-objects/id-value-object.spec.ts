@@ -3,16 +3,15 @@ import { InvalidIdError } from '@domain/shared/errors';
 import { v4 as uuidv4 } from 'uuid';
 
 describe('Id Value Object', () => {
-  test('should instantiate a new id with a valid uuid in parameter', () => {
+  test('should create an id', () => {
     const uuid = uuidv4();
     const id = new Id(uuid);
-    expect(id).toBeDefined();
     const getValue = id.getValue();
     expect(getValue).toBe(uuid);
   });
 
-  test('should instantiate a new id without parameter', () => {
-    const id = new Id();
+  test('should generate a new id', () => {
+    const id = Id.generateNewId();
     expect(id).toBeDefined();
     const getValue = id.getValue();
     expect(getValue).toBeDefined();
