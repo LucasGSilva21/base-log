@@ -1,5 +1,5 @@
 import { ValueObject } from '@domain/shared/protocols';
-import { DomainError } from '@domain/shared/errors';
+import { InvalidUserNameError } from '@domain/shared/errors';
 import { validateUserName } from '@domain/shared/helpers';
 
 export class UserName implements ValueObject<string> {
@@ -17,7 +17,7 @@ export class UserName implements ValueObject<string> {
   private validate(userName: string): void {
     const isValid = validateUserName(userName);
     if (!isValid) {
-      throw new DomainError(`The user name ${userName} is invalid`);
+      throw new InvalidUserNameError(userName);
     }
   }
 }

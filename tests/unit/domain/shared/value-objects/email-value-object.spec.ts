@@ -1,6 +1,6 @@
 
 import { Email } from '@domain/shared/value-objects';
-import { DomainError } from '@domain/shared/errors';
+import { InvalidEmailError } from '@domain/shared/errors';
 
 describe('Email Value Object', () => {
   test('should instantiate a new Email with a valid parameter', () => {
@@ -13,7 +13,7 @@ describe('Email Value Object', () => {
 
   test('should throw a DomainError if send a invalid email', () => {
     const invalidEmail = 'invalid-email';
-    expect(() => new Email(invalidEmail)).toThrow(DomainError);
-    expect(() => new Email(invalidEmail)).toThrow(`The email ${invalidEmail} is invalid`);
+    expect(() => new Email(invalidEmail)).toThrow(InvalidEmailError);
+    expect(() => new Email(invalidEmail)).toThrow(`The email "${invalidEmail}" is invalid`);
   });
 });

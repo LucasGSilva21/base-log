@@ -1,5 +1,5 @@
 import { Id } from '@domain/shared/value-objects';
-import { DomainError } from '@domain/shared/errors';
+import { InvalidIdError } from '@domain/shared/errors';
 import { v4 as uuidv4 } from 'uuid';
 
 describe('Id Value Object', () => {
@@ -20,7 +20,7 @@ describe('Id Value Object', () => {
 
   test('should throw a DomainError if send a invalid uuid', () => {
     const invalidUuid = 'invalid-uuid';
-    expect(() => new Id(invalidUuid)).toThrow(DomainError);
-    expect(() => new Id(invalidUuid)).toThrow(`The id ${invalidUuid} is invalid`);
+    expect(() => new Id(invalidUuid)).toThrow(InvalidIdError);
+    expect(() => new Id(invalidUuid)).toThrow(`The id "${invalidUuid}" is invalid`);
   });
 });

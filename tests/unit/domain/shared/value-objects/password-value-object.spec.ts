@@ -1,5 +1,5 @@
 import { Password } from '@domain/shared/value-objects';
-import { DomainError } from '@domain/shared/errors';
+import { InvalidPasswordError, DomainError } from '@domain/shared/errors';
 
 jest.mock('bcrypt', () => ({
   hashSync (): string {
@@ -37,8 +37,8 @@ describe('Password Value Object', () => {
 
   test('should throw a DomainError if send a invalid password', () => {
     const invalidPassword = { password: 'invalid' };
-    expect(() => new Password(invalidPassword)).toThrow(DomainError);
-    expect(() => new Password(invalidPassword)).toThrow(`The password ${invalidPassword.password} is invalid`);
+    expect(() => new Password(invalidPassword)).toThrow(InvalidPasswordError);
+    expect(() => new Password(invalidPassword)).toThrow('The password provided is invalid');
   });
 
   test('should throw a DomainError if send a blank object', () => {

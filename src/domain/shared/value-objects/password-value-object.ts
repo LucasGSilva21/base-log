@@ -1,5 +1,5 @@
 import { ValueObject } from '@domain/shared/protocols';
-import { DomainError } from '@domain/shared/errors';
+import { InvalidPasswordError, DomainError } from '@domain/shared/errors';
 import { validatePassword, hash, compare } from '@domain/shared/helpers';
 
 interface PasswordInput {
@@ -36,7 +36,7 @@ export class Password implements ValueObject<string> {
   private validate(password: string): void {
     const isValid = validatePassword(password);
     if (!isValid) {
-      throw new DomainError(`The password ${password} is invalid`);
+      throw new InvalidPasswordError();
     }
   }
 }
