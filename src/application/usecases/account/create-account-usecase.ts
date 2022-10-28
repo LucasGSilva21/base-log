@@ -12,7 +12,7 @@ export class CreateAccountUseCase implements UseCase<CreateAccountDto, ResultAcc
   async exec (data: CreateAccountDto): Promise<ResultAccountDto> {
     const userName = UserName.create(data.userName);
     const email = Email.create(data.email);
-    const password = new Password({ password: data.password });
+    const password = Password.create(data.password);
     const isActive = data.isActive;
 
     const emailAlreadyExists = await this.accountRepository.findByEmail(email);
