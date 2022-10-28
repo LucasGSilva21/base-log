@@ -10,7 +10,7 @@ export class CreateAccountUseCase implements UseCase<CreateAccountDto, ResultAcc
   ) {}
 
   async exec (data: CreateAccountDto): Promise<ResultAccountDto> {
-    const userName = new UserName(data.userName);
+    const userName = UserName.create(data.userName);
     const email = Email.create(data.email);
     const password = new Password({ password: data.password });
     const isActive = data.isActive;

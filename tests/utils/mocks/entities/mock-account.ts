@@ -5,7 +5,7 @@ import { generateUuid } from '@domain/shared/helpers';
 export const mockLoadAccount = (isActive = true): AccountEntity => {
   const uuid = generateUuid();
   const id = Id.load(uuid);
-  const userName = new UserName('Valid Name');
+  const userName = UserName.create('Valid Name');
   const email = Email.create('valid@email.com');
   const password = new Password({ password: '#Valid123#' });
   const createdAt = new Date();
@@ -18,7 +18,7 @@ export const mockLoadAccount = (isActive = true): AccountEntity => {
 };
 
 export const mockCreateAccount = (isActive = true): AccountEntity => {
-  const userName = new UserName('Valid Name');
+  const userName = UserName.create('Valid Name');
   const email = Email.create('valid@email.com');
   const password = new Password({ password: '#Valid123#' });
   const account = new AccountEntity({

@@ -26,7 +26,7 @@ interface SutTypes {
 const makeSut = (): SutTypes => {
   const uuid = generateUuid();
   const id = Id.load(uuid);
-  const userName = new UserName('Valid Name');
+  const userName = UserName.create('Valid Name');
   const email = Email.create('valid@email.com');
   const password = new Password({ password: '#Valid123#' });
   const isActive = true;
@@ -63,7 +63,7 @@ describe('Account Entity', () => {
   });
 
   test('should return true when compare succeds', async () => {
-    const userName = new UserName('Valid Name');
+    const userName = UserName.create('Valid Name');
     const email = Email.create('valid@email.com');
     const password = new Password({ password: '#Valid123#' });
     const account = new AccountEntity({ userName, email, password });
