@@ -6,7 +6,7 @@ export const mockAccountWithIdSent = (isActive = true): AccountEntity => {
   const uuid = generateUuid();
   const id = Id.load(uuid);
   const userName = new UserName('Valid Name');
-  const email = new Email('valid@email.com');
+  const email = Email.create('valid@email.com');
   const password = new Password({ password: '#Valid123#' });
   const createdAt = new Date();
   const updatedAt = new Date();
@@ -19,7 +19,7 @@ export const mockAccountWithIdSent = (isActive = true): AccountEntity => {
 
 export const mockAccountWithoutIdSent = (isActive = true): AccountEntity => {
   const userName = new UserName('Valid Name');
-  const email = new Email('valid@email.com');
+  const email = Email.create('valid@email.com');
   const password = new Password({ password: '#Valid123#' });
   const account = new AccountEntity({
     userName, email, password, isActive

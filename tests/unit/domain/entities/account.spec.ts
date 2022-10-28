@@ -27,7 +27,7 @@ const makeSut = (): SutTypes => {
   const uuid = generateUuid();
   const id = Id.load(uuid);
   const userName = new UserName('Valid Name');
-  const email = new Email('valid@email.com');
+  const email = Email.create('valid@email.com');
   const password = new Password({ password: '#Valid123#' });
   const isActive = true;
   const createdAt = new Date();
@@ -64,7 +64,7 @@ describe('Account Entity', () => {
 
   test('should return true when compare succeds', async () => {
     const userName = new UserName('Valid Name');
-    const email = new Email('valid@email.com');
+    const email = Email.create('valid@email.com');
     const password = new Password({ password: '#Valid123#' });
     const account = new AccountEntity({ userName, email, password });
     const isValid = await account.comparePassword('any_value');

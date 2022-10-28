@@ -5,19 +5,35 @@ import { validateEmail } from '@domain/shared/helpers';
 export class Email implements ValueObject<string> {
   private _email: string;
 
-  constructor(email: string) {
-    this.validate(email);
+  private constructor(email: string) {
     this._email = email;
+  }
+
+  private static createOrLoad(email: string): Email {
+    const isValid = this.validate(email);
+    if (!isValid) {
+      throw new InvalidEmailError(email);
+    }
+    return new Email(email);
+  }
+
+  static create(email: string): Email {
+    return this.createOrLoad(email);
+  }
+
+  static load(email: string): Email {
+    return this.createOrLoad(email);
   }
 
   getValue(): string {
     return this._email;
   }
 
-  private validate(email: string): void {
+  static validate(email: string): boolean {
     const isValid = validateEmail(email);
     if (!isValid) {
-      throw new InvalidEmailError(email);
+      return false;
     }
+    return true;
   }
 }
