@@ -32,7 +32,7 @@ describe('Password Value Object', () => {
     expect(compare).toBe(true);
   });
 
-  test('should throw a DomainError if send a invalid password', () => {
+  test('should throw if send a invalid password', () => {
     const invalidPassword = 'invalid';
     expect(() => Password.create(invalidPassword)).toThrow(InvalidPasswordError);
     expect(() => Password.create(invalidPassword)).toThrow('The password provided is invalid');
