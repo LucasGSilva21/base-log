@@ -9,16 +9,16 @@ export class Id implements ValueObject<string> {
     this._id = id;
   }
 
-  static create(id: string): Id {
+  static create(): Id {
+    return new Id(generateUuid());
+  }
+
+  static load(id: string): Id {
     const isValid = this.validate(id);
     if (!isValid) {
       throw new InvalidIdError(id);
     }
     return new Id(id);
-  }
-
-  static generateNewId(): Id {
-    return new Id(generateUuid());
   }
 
   getValue(): string {

@@ -5,13 +5,13 @@ import { v4 as uuidv4 } from 'uuid';
 describe('Id Value Object', () => {
   test('should create an id', () => {
     const uuid = uuidv4();
-    const id = Id.create(uuid);
+    const id = Id.load(uuid);
     const getValue = id.getValue();
     expect(getValue).toBe(uuid);
   });
 
   test('should generate a new id', () => {
-    const id = Id.generateNewId();
+    const id = Id.create();
     expect(id).toBeDefined();
     const getValue = id.getValue();
     expect(getValue).toBeDefined();
@@ -19,7 +19,7 @@ describe('Id Value Object', () => {
 
   test('should throw a DomainError if send a invalid uuid', () => {
     const invalidUuid = 'invalid-uuid';
-    expect(() => Id.create(invalidUuid)).toThrow(InvalidIdError);
-    expect(() => Id.create(invalidUuid)).toThrow(`The id "${invalidUuid}" is invalid`);
+    expect(() => Id.load(invalidUuid)).toThrow(InvalidIdError);
+    expect(() => Id.load(invalidUuid)).toThrow(`The id "${invalidUuid}" is invalid`);
   });
 });
