@@ -1,42 +1,40 @@
 import { ValueObject } from '@domain/shared/protocols';
-import { InvalidPasswordError, DomainError } from '@domain/shared/errors';
+import { InvalidPasswordError } from '@domain/shared/errors';
 import { validatePassword, hash, compare } from '@domain/shared/helpers';
-
-interface PasswordInput {
-  password?: string
-  passwordHash?: string
-}
 
 export class Password implements ValueObject<string> {
   private _passwordHash: string;
 
-  constructor({
-    password,
-    passwordHash
-  }: PasswordInput) {
-    if (!password && !passwordHash) {
-      throw new DomainError('A password or a password hash is required');
+  private constructor(passwordHash: string) {
+    this._passwordHash = passwordHash;
+  }
+
+  static create(password: string): Password {
+    const isValid = this.validate(password);
+    if (!isValid) {
+      throw new InvalidPasswordError();
     }
-    if (passwordHash) {
-      this._passwordHash = passwordHash;
-    } else {
-      this.validate(password);
-      this._passwordHash = hash(password);
-    }
+    const passwordHash = hash(password);
+    return new Password(passwordHash);
+  }
+
+  static load(passwordHash: string): Password {
+    return new Password(passwordHash);
   }
 
   getValue(): string {
     return this._passwordHash;
   }
 
-  async comparePassword (value: string): Promise<boolean> {
-    return compare(value, this._passwordHash);
-  }
-
-  private validate(password: string): void {
+  static validate(password: string): boolean {
     const isValid = validatePassword(password);
     if (!isValid) {
-      throw new InvalidPasswordError();
+      return false;
     }
+    return true;
+  }
+
+  async comparePassword (password: string): Promise<boolean> {
+    return compare(password, this._passwordHash);
   }
 }

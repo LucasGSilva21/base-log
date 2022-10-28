@@ -25,10 +25,10 @@ interface SutTypes {
 
 const makeSut = (): SutTypes => {
   const uuid = generateUuid();
-  const id = new Id(uuid);
-  const userName = new UserName('Valid Name');
-  const email = new Email('valid@email.com');
-  const password = new Password({ password: '#Valid123#' });
+  const id = Id.load(uuid);
+  const userName = UserName.create('Valid Name');
+  const email = Email.create('valid@email.com');
+  const password = Password.create('#Valid123#');
   const isActive = true;
   const createdAt = new Date();
   const updatedAt = new Date();
@@ -50,7 +50,7 @@ describe('Account Entity', () => {
     MockDate.reset();
   });
 
-  test('should instantiate a new AccountEntity', () => {
+  test('should create a new AccountEntity', () => {
     const {
       sut, id, userName, email, isActive, createdAt, updatedAt
     } = makeSut();
@@ -63,9 +63,9 @@ describe('Account Entity', () => {
   });
 
   test('should return true when compare succeds', async () => {
-    const userName = new UserName('Valid Name');
-    const email = new Email('valid@email.com');
-    const password = new Password({ password: '#Valid123#' });
+    const userName = UserName.create('Valid Name');
+    const email = Email.create('valid@email.com');
+    const password = Password.create('#Valid123#');
     const account = new AccountEntity({ userName, email, password });
     const isValid = await account.comparePassword('any_value');
     expect(isValid).toBe(true);

@@ -1,6 +1,6 @@
 import { CreateAccountUseCase } from '@application/usecases/account';
 import { AccountRepository } from '@application/repositories';
-import { mockAccountWithIdSent } from '@tests/utils/mocks/entities';
+import { mockLoadAccount } from '@tests/utils/mocks/entities';
 import { mockAccountRepository } from '@tests/utils/mocks/repositories';
 import { mockCreateAccountData } from '@tests/utils/mocks/dtos/account';
 import { throwError } from '@tests/utils/helpers';
@@ -50,14 +50,14 @@ describe('Account Entity', () => {
     const { sut, accountRepositoryStub } = makeSut();
     const findByEmailSpy = jest.spyOn(accountRepositoryStub, 'findByEmail');
     await sut.exec(mockCreateAccountData());
-    expect(findByEmailSpy).toHaveBeenCalledWith(mockAccountWithIdSent().email);
+    expect(findByEmailSpy).toHaveBeenCalledWith(mockLoadAccount().email);
   });
 
   test('Should call create of AccountRepository with correct values', async () => {
     const { sut, accountRepositoryStub } = makeSut();
     const addSpy = jest.spyOn(accountRepositoryStub, 'create');
     await sut.exec(mockCreateAccountData());
-    expect(addSpy).toHaveBeenCalledWith(mockAccountWithIdSent(false));
+    expect(addSpy).toHaveBeenCalledWith(mockLoadAccount(false));
   });
 
   test('Should throw if findByEmail of AccountRepository throws', async () => {
@@ -76,7 +76,7 @@ describe('Account Entity', () => {
 
   test('Should throw if the email provided already exists', async () => {
     const { sut, accountRepositoryStub } = makeSut();
-    jest.spyOn(accountRepositoryStub, 'findByEmail').mockResolvedValueOnce(mockAccountWithIdSent());
+    jest.spyOn(accountRepositoryStub, 'findByEmail').mockResolvedValueOnce(mockLoadAccount());
     const promise = sut.exec(mockCreateAccountData());
     await expect(promise).rejects.toThrow();
   });

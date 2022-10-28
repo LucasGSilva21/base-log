@@ -2,12 +2,12 @@ import { AccountEntity } from '@domain/entities';
 import { Id, UserName, Email, Password } from '@domain/shared/value-objects';
 import { generateUuid } from '@domain/shared/helpers';
 
-export const mockAccountWithIdSent = (isActive = true): AccountEntity => {
+export const mockLoadAccount = (isActive = true): AccountEntity => {
   const uuid = generateUuid();
-  const id = new Id(uuid);
-  const userName = new UserName('Valid Name');
-  const email = new Email('valid@email.com');
-  const password = new Password({ password: '#Valid123#' });
+  const id = Id.load(uuid);
+  const userName = UserName.create('Valid Name');
+  const email = Email.create('valid@email.com');
+  const password = Password.create('#Valid123#');
   const createdAt = new Date();
   const updatedAt = new Date();
   const account = new AccountEntity({
@@ -17,10 +17,10 @@ export const mockAccountWithIdSent = (isActive = true): AccountEntity => {
   return account;
 };
 
-export const mockAccountWithoutIdSent = (isActive = true): AccountEntity => {
-  const userName = new UserName('Valid Name');
-  const email = new Email('valid@email.com');
-  const password = new Password({ password: '#Valid123#' });
+export const mockCreateAccount = (isActive = true): AccountEntity => {
+  const userName = UserName.create('Valid Name');
+  const email = Email.create('valid@email.com');
+  const password = Password.create('#Valid123#');
   const account = new AccountEntity({
     userName, email, password, isActive
   });

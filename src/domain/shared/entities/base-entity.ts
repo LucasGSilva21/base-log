@@ -10,7 +10,7 @@ export class BaseEntity {
     createdAt?: Date,
     updatedAt?: Date
   ) {
-    this._id = id || new Id();
+    this._id = id || Id.create();
     this._createdAt = createdAt || new Date();
     this._updatedAt = updatedAt || new Date();
   }
