@@ -1,4 +1,4 @@
-import { HttpResponse, HttpError } from '@presentation/shared/protocols';
+import { HttpResponse, ErrorBase, OutputError } from '@presentation/shared/protocols';
 
 export const ok = (data: any): HttpResponse<any> => ({
   statusCode: 200,
@@ -15,17 +15,35 @@ export const noContent = (): HttpResponse<any> => ({
   body: null
 });
 
-export const badRequest = (error: Error): HttpError => ({
+export const badRequest = (error: ErrorBase): HttpResponse<OutputError> => ({
   statusCode: 400,
-  body: error
+  body: {
+    error: {
+      type: error.type,
+      title: error.name,
+      message: error.message
+    }
+  }
 });
 
-export const notFound = (error: Error): HttpError => ({
+export const notFound = (error: ErrorBase): HttpResponse<OutputError> => ({
   statusCode: 404,
-  body: error
+  body: {
+    error: {
+      type: error.type,
+      title: error.name,
+      message: error.message
+    }
+  }
 });
 
-export const serverError = (): HttpError => ({
+export const serverError = (): HttpResponse<OutputError> => ({
   statusCode: 500,
-  body: 'Unexpected Error'
+  body: {
+    error: {
+      type: 'errors/common/unexpectedError',
+      title: 'Unexpected Error',
+      message: 'Please, try again later'
+    }
+  }
 });

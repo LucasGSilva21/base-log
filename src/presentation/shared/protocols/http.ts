@@ -1,3 +1,5 @@
+import { OutputError } from '@presentation/shared/protocols';
+
 export interface HttpRequest {
   body?: any
   headers?: any
@@ -6,10 +8,5 @@ export interface HttpRequest {
 
 export interface HttpResponse<B> {
   statusCode: number
-  body?: B
-}
-
-export interface HttpError {
-  statusCode: number
-  body: string | Error
+  body?: B | OutputError
 }
