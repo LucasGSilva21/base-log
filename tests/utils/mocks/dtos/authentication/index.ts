@@ -1,1 +1,1 @@
-export * from './mock-register-input';
+export * from './mock-sign-up-input';

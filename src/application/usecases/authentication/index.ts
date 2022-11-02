@@ -1,1 +1,1 @@
-export * from './register-usecase';
+export * from './sign-up-usecase';
