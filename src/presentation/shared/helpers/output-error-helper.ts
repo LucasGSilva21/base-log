@@ -1,7 +1,7 @@
 import { badRequest, serverError } from '@presentation/shared/helpers';
-import { HttpResponse } from '@presentation/shared/protocols';
+import { HttpError } from '@presentation/shared/protocols';
 
-export const makeOutputErrorHelper = (error: Error): HttpResponse<string> => {
+export const makeOutputErrorHelper = (error: Error): HttpError => {
   if (error.name === 'errors/presentation/invalidParameters') {
     return badRequest(error);
   }

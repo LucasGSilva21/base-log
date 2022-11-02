@@ -6,5 +6,10 @@ export interface HttpRequest {
 
 export interface HttpResponse<B> {
   statusCode: number
-  body?: B | string
+  body?: B
+}
+
+export interface HttpError {
+  statusCode: number
+  body: string | Error
 }
