@@ -1,3 +1,3 @@
 export * from './aggregate-root';
-export * from './domain-error';
+export * from './error-base';
 export * from './value-object';

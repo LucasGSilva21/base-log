@@ -1,6 +1,7 @@
 import { AccountEntity } from '@domain/entities';
 import { UserName, Email, Password } from '@domain/shared/value-objects';
 import { UseCase } from '@application/shared/protocols';
+import { DuplicatedEmailError } from '@application/shared/errors';
 import { SignUpInputDto, SignUpOutputDto } from '@application/dtos/authentication';
 import { AccountRepository } from '@application/repositories';
 
@@ -18,7 +19,7 @@ export class SignUpUseCase implements UseCase<SignUpInputDto, SignUpOutputDto> {
     const emailAlreadyExists = await this.accountRepository.findByEmail(email);
 
     if (emailAlreadyExists) {
-      throw new Error(`The email ${email.getValue()} already exists`);
+      throw new DuplicatedEmailError(email.getValue());
     }
 
     const account = new AccountEntity({

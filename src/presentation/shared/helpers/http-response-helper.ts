@@ -1,4 +1,5 @@
-import { HttpResponse, ErrorBase, OutputError } from '@presentation/shared/protocols';
+import { ErrorBase } from '@domain/shared/protocols';
+import { HttpResponse, OutputError } from '@presentation/shared/protocols';
 
 export const ok = (data: any): HttpResponse<any> => ({
   statusCode: 200,
