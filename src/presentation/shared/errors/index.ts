@@ -1,1 +1,1 @@
-export * from './invalid-parameters-error';
+export * from './invalid-parameter-error';
