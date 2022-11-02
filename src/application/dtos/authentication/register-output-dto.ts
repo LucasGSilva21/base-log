@@ -1,4 +1,4 @@
-export interface ResultAccountDto {
+export interface RegisterOutputDto {
   id: string
   userName: string
   email: string

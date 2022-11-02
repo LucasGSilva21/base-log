@@ -1,15 +1,15 @@
 import { AccountEntity } from '@domain/entities';
 import { UserName, Email, Password } from '@domain/shared/value-objects';
 import { UseCase } from '@application/shared/protocols';
-import { CreateAccountDto, ResultAccountDto } from '@application/dtos/account';
+import { RegisterInputDto, RegisterOutputDto } from '@application/dtos/authentication';
 import { AccountRepository } from '@application/repositories';
 
-export class CreateAccountUseCase implements UseCase<CreateAccountDto, ResultAccountDto> {
+export class RegisterUseCase implements UseCase<RegisterInputDto, RegisterOutputDto> {
   constructor (
     private readonly accountRepository: AccountRepository
   ) {}
 
-  async exec (data: CreateAccountDto): Promise<ResultAccountDto> {
+  async exec (data: RegisterInputDto): Promise<RegisterOutputDto> {
     const userName = UserName.create(data.userName);
     const email = Email.create(data.email);
     const password = Password.create(data.password);
