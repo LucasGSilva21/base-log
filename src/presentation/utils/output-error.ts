@@ -24,7 +24,7 @@ export const makeOutputErrorHelper = (error: ErrorBase): HttpResponse<OutputErro
 
 
   // Presentation Errors
-  if (error.type === 'errors/common/invalidParameters') {
+  if (error.type === 'errors/common/invalidParameter') {
     return badRequest(error);
   }
 
