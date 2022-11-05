@@ -1,7 +1,7 @@
 import { ErrorBase } from '@domain/protocols';
-import { UseCase } from '@application/shared/protocols';
+import { UseCase } from '@application/protocols';
 import { SignUpInputDto, SignUpOutputDto } from '@application/dtos/authentication';
-import { Controller, HttpRequest, HttpResponse, OutputError } from '@presentation/shared/protocols';
+import { Controller, HttpRequest, HttpResponse, OutputError } from '@presentation/protocols';
 import { created, makeOutputErrorHelper } from '@presentation/utils';
 
 export class SignUpController implements Controller<SignUpOutputDto> {
