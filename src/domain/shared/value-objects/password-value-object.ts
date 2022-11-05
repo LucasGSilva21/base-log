@@ -9,16 +9,15 @@ export class Password implements ValueObject<string> {
     this._passwordHash = passwordHash;
   }
 
-  static create(password: string): Password {
+  static create(password: string, isHashed?: boolean): Password {
+    if (isHashed) {
+      return new Password(password);
+    }
     const isValid = this.validate(password);
     if (!isValid) {
       throw new InvalidPasswordError();
     }
     const passwordHash = hash(password);
-    return new Password(passwordHash);
-  }
-
-  static load(passwordHash: string): Password {
     return new Password(passwordHash);
   }
 

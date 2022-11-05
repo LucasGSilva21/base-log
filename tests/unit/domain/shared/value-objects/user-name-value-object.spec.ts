@@ -12,7 +12,7 @@ describe('UserName Value Object', () => {
 
   test('should throw if send a invalid user name', () => {
     const invalidUserName = 'invalid-user-name-123';
-    expect(() => UserName.load(invalidUserName)).toThrow(InvalidUserNameError);
-    expect(() => UserName.load(invalidUserName)).toThrow(`The user name "${invalidUserName}" is invalid`);
+    expect(() => UserName.create(invalidUserName)).toThrow(InvalidUserNameError);
+    expect(() => UserName.create(invalidUserName)).toThrow(`The user name "${invalidUserName}" is invalid`);
   });
 });

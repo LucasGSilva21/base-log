@@ -9,11 +9,10 @@ export class Id implements ValueObject<string> {
     this._id = id;
   }
 
-  static create(): Id {
-    return new Id(generateUuid());
-  }
-
-  static load(id: string): Id {
+  static create(id?: string): Id {
+    if (!id) {
+      return new Id(generateUuid());
+    }
     const isValid = this.validate(id);
     if (!isValid) {
       throw new InvalidIdError(id);

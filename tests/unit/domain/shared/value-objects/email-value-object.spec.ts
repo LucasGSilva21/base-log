@@ -13,7 +13,7 @@ describe('Email Value Object', () => {
 
   test('should throw if send a invalid email', () => {
     const invalidEmail = 'invalid-email';
-    expect(() => Email.load(invalidEmail)).toThrow(InvalidEmailError);
-    expect(() => Email.load(invalidEmail)).toThrow(`The email "${invalidEmail}" is invalid`);
+    expect(() => Email.create(invalidEmail)).toThrow(InvalidEmailError);
+    expect(() => Email.create(invalidEmail)).toThrow(`The email "${invalidEmail}" is invalid`);
   });
 });

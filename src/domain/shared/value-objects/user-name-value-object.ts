@@ -9,20 +9,12 @@ export class UserName implements ValueObject<string> {
     this._userName = userName;
   }
 
-  private static createOrLoad(userName: string): UserName {
+  static create(userName: string): UserName {
     const isValid = this.validate(userName);
     if (!isValid) {
       throw new InvalidUserNameError(userName);
     }
     return new UserName(userName);
-  }
-
-  static create(userName: string): UserName {
-    return this.createOrLoad(userName);
-  }
-
-  static load(userName: string): UserName {
-    return this.createOrLoad(userName);
   }
 
   getValue(): string {

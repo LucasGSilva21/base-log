@@ -20,14 +20,14 @@ describe('Password Value Object', () => {
   });
 
   test('should load a Password and not hash the value', () => {
-    const password = Password.load('hash-password');
+    const password = Password.create('hash-password', true);
     expect(password).toBeDefined();
     const getValue = password.getValue();
     expect(getValue).toBe('hash-password');
   });
 
   test('should return true if the compare returns true', async () => {
-    const password = Password.load('hash');
+    const password = Password.create('hash', true);
     const compare = await password.comparePassword('hash');
     expect(compare).toBe(true);
   });

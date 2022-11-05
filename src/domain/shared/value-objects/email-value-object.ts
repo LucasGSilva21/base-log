@@ -9,20 +9,12 @@ export class Email implements ValueObject<string> {
     this._email = email;
   }
 
-  private static createOrLoad(email: string): Email {
+  static create(email: string): Email {
     const isValid = this.validate(email);
     if (!isValid) {
       throw new InvalidEmailError(email);
     }
     return new Email(email);
-  }
-
-  static create(email: string): Email {
-    return this.createOrLoad(email);
-  }
-
-  static load(email: string): Email {
-    return this.createOrLoad(email);
   }
 
   getValue(): string {
