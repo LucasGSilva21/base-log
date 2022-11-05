@@ -1,6 +1,6 @@
-import { ValueObject } from '@domain/shared/protocols';
-import { InvalidUserNameError } from '@domain/shared/errors';
-import { validateUserName } from '@domain/shared/helpers';
+import { ValueObject } from '@domain/protocols';
+import { InvalidUserNameError } from '@domain/errors';
+import { validateUserName } from '@domain/utils';
 
 export class UserName implements ValueObject<string> {
   private _userName: string;

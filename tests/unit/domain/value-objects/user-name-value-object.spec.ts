@@ -1,5 +1,5 @@
-import { UserName } from '@domain/shared/value-objects';
-import { InvalidUserNameError } from '@domain/shared/errors';
+import { UserName } from '@domain/value-objects';
+import { InvalidUserNameError } from '@domain/errors';
 
 describe('UserName Value Object', () => {
   test('should create a new user name', () => {

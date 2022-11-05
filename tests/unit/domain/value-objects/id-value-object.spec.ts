@@ -1,5 +1,5 @@
-import { Id } from '@domain/shared/value-objects';
-import { InvalidIdError } from '@domain/shared/errors';
+import { Id } from '@domain/value-objects';
+import { InvalidIdError } from '@domain/errors';
 import { v4 as uuidv4 } from 'uuid';
 
 describe('Id Value Object', () => {

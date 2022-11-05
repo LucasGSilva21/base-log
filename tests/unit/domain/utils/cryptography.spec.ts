@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { hash, compare } from '@domain/shared/helpers';
+import { hash, compare } from '@domain/utils';
 
 jest.mock('bcrypt', () => ({
   hashSync (): string {

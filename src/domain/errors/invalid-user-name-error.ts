@@ -1,4 +1,4 @@
-import { ErrorBase } from '@domain/shared/protocols';
+import { ErrorBase } from '@domain/protocols';
 
 export class InvalidUserNameError extends Error implements ErrorBase {
   readonly type: string;

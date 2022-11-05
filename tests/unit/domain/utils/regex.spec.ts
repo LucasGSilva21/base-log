@@ -1,4 +1,4 @@
-import { validateUserName, validateEmail, validatePassword } from '@domain/shared/helpers';
+import { validateUserName, validateEmail, validatePassword } from '@domain/utils';
 
 describe('ValidateUserName', () => {
   test('should return true if the value contains only letters and spaces', () => {

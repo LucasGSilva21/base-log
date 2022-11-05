@@ -1,4 +1,4 @@
-import { Id } from '@domain/shared/value-objects/id-value-object';
+import { Id } from '@domain/value-objects/id-value-object';
 
 export class BaseEntity {
   private _id: Id;

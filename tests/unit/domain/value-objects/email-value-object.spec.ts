@@ -1,6 +1,6 @@
 
-import { Email } from '@domain/shared/value-objects';
-import { InvalidEmailError } from '@domain/shared/errors';
+import { Email } from '@domain/value-objects';
+import { InvalidEmailError } from '@domain/errors';
 
 describe('Email Value Object', () => {
   test('should create a new email', () => {

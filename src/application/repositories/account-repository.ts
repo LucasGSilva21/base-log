@@ -1,5 +1,5 @@
 import { AccountEntity } from '@domain/entities';
-import { Email } from '@domain/shared/value-objects';
+import { Email } from '@domain/value-objects';
 
 export interface AccountRepository {
   create (data: AccountEntity): Promise<AccountEntity>

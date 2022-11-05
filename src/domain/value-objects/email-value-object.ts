@@ -1,6 +1,6 @@
-import { ValueObject } from '@domain/shared/protocols';
-import { InvalidEmailError } from '@domain/shared/errors';
-import { validateEmail } from '@domain/shared/helpers';
+import { ValueObject } from '@domain/protocols';
+import { InvalidEmailError } from '@domain/errors';
+import { validateEmail } from '@domain/utils';
 
 export class Email implements ValueObject<string> {
   private _email: string;

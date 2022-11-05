@@ -1,6 +1,6 @@
-import { ValueObject } from '@domain/shared/protocols';
-import { InvalidPasswordError } from '@domain/shared/errors';
-import { validatePassword, hash, compare } from '@domain/shared/helpers';
+import { ValueObject } from '@domain/protocols';
+import { InvalidPasswordError } from '@domain/errors';
+import { validatePassword, hash, compare } from '@domain/utils';
 
 export class Password implements ValueObject<string> {
   private _passwordHash: string;

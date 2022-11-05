@@ -1,5 +1,5 @@
 import { AccountEntity } from '@domain/entities';
-import { UserName, Email, Password } from '@domain/shared/value-objects';
+import { UserName, Email, Password } from '@domain/value-objects';
 import { UseCase } from '@application/shared/protocols';
 import { DuplicatedEmailError } from '@application/shared/errors';
 import { SignUpInputDto, SignUpOutputDto } from '@application/dtos/authentication';

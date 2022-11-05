@@ -3,7 +3,7 @@ import { AccountRepository } from '@application/repositories';
 import { mockLoadAccount } from '@tests/utils/mocks/entities';
 import { mockAccountRepository } from '@tests/utils/mocks/repositories';
 import { mockSignUpInput } from '@tests/utils/mocks/dtos/authentication';
-import { throwError } from '@tests/utils/helpers';
+import { throwError } from '@tests/utils/utils';
 import MockDate from 'mockdate';
 
 jest.mock('bcrypt', () => ({

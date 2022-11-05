@@ -1,5 +1,5 @@
-import { ErrorBase } from '@domain/shared/protocols';
-import { badRequest, serverError } from '@presentation/shared/helpers';
+import { ErrorBase } from '@domain/protocols';
+import { badRequest, serverError } from '@presentation/utils';
 import { HttpResponse, OutputError } from '@presentation/shared/protocols';
 
 export const makeOutputErrorHelper = (error: ErrorBase): HttpResponse<OutputError> => {

@@ -1,6 +1,6 @@
-import { BaseEntity } from '@domain/shared/entities/base-entity';
-import { AggregateRoot } from '@domain/shared/protocols';
-import { Id, UserName, Email, Password } from '@domain/shared/value-objects';
+import { BaseEntity } from '@domain/utils/base-entity';
+import { AggregateRoot } from '@domain/protocols';
+import { Id, UserName, Email, Password } from '@domain/value-objects';
 
 export interface AccountProps {
   id?: Id

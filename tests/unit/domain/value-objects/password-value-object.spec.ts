@@ -1,5 +1,5 @@
-import { Password } from '@domain/shared/value-objects';
-import { InvalidPasswordError } from '@domain/shared/errors';
+import { Password } from '@domain/value-objects';
+import { InvalidPasswordError } from '@domain/errors';
 
 jest.mock('bcrypt', () => ({
   hashSync (): string {

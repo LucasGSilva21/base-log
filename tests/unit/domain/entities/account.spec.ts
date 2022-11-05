@@ -1,6 +1,6 @@
 import { AccountEntity } from '@domain/entities';
-import { Id, UserName, Email, Password } from '@domain/shared/value-objects';
-import { generateUuid } from '@domain/shared/helpers';
+import { Id, UserName, Email, Password } from '@domain/value-objects';
+import { generateUuid } from '@domain/utils';
 import MockDate from 'mockdate';
 
 jest.mock('bcrypt', () => ({

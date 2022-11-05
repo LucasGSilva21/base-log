@@ -1,6 +1,6 @@
-import { generateUuid, validateUuid } from '@domain/shared/helpers';
-import { ValueObject } from '@domain/shared/protocols';
-import { InvalidIdError } from '@domain/shared/errors';
+import { generateUuid, validateUuid } from '@domain/utils';
+import { ValueObject } from '@domain/protocols';
+import { InvalidIdError } from '@domain/errors';
 
 export class Id implements ValueObject<string> {
   private _id: string;
