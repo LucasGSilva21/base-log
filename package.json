@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "dynamoose": "^3.1.0",
     "module-alias": "^2.2.2",
     "uuid": "^9.0.0"
   },
