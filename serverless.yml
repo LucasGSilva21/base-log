@@ -1,0 +1,23 @@
+service: baselog
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+
+  stage: dev
+  region: us-east-1
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+custom:
+  funcDir: src/framework/functions
+
+functions:
+  signup:
+    handler: ${self:custom.funcDir}/authentication/sign-up.handle
+    events:
+      - http:
+          path: /authentication/signup
+          method: POST

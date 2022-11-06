@@ -1,2 +1,2 @@
-export * from './http-response'
-export * from './output-error'
+export * from './http-response';
+export * from './output-error';

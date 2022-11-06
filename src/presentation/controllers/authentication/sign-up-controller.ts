@@ -17,6 +17,8 @@ export class SignUpController implements Controller<SignUpOutputDto> {
 
       return created(account);
     } catch (error) {
+      console.log(error);
+      console.log((error as any).type);
       return makeOutputErrorHelper(error as ErrorBase);
     }
   }

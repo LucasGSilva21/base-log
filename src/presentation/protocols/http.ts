@@ -1,4 +1,4 @@
-import { OutputError } from '@presentation/shared/protocols';
+import { OutputError } from '@presentation/protocols';
 
 export interface HttpRequest {
   body?: any

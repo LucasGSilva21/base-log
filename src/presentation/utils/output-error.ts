@@ -4,21 +4,21 @@ import { HttpResponse, OutputError } from '@presentation/protocols';
 
 export const makeOutputErrorHelper = (error: ErrorBase): HttpResponse<OutputError> => {
   // Domain Errors
-  if (error.type === 'errors/common/invalidEmail') {
+  if (error.type === 'errors/authentication/invalidEmail') {
     return badRequest(error);
   }
   if (error.type === 'errors/common/invalidId') {
     return badRequest(error);
   }
-  if (error.type === 'errors/common/invalidPassword') {
+  if (error.type === 'errors/authentication/invalidPassword') {
     return badRequest(error);
   }
-  if (error.type === 'errors/common/invalidUserName') {
+  if (error.type === 'errors/authentication/invalidUserName') {
     return badRequest(error);
   }
 
   // Application Errors
-  if (error.type === 'errors/common/duplicatedEmail') {
+  if (error.type === 'errors/authentication/duplicatedEmail') {
     return badRequest(error);
   }
 
