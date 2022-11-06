@@ -18,6 +18,7 @@ interface SutTypes {
   id: Id
   userName: UserName
   email: Email
+  password: Password
   isActive: boolean
   createdAt: Date
   updatedAt: Date
@@ -37,7 +38,7 @@ const makeSut = (): SutTypes => {
   });
 
   return {
-    sut, id, userName, email, isActive, createdAt, updatedAt
+    sut, id, userName, email, password, isActive, createdAt, updatedAt
   };
 };
 
@@ -52,11 +53,12 @@ describe('Account Entity', () => {
 
   test('should create a new AccountEntity', () => {
     const {
-      sut, id, userName, email, isActive, createdAt, updatedAt
+      sut, id, userName, email, password, isActive, createdAt, updatedAt
     } = makeSut();
     expect(sut.id).toBe(id);
     expect(sut.userName).toBe(userName);
     expect(sut.email).toBe(email);
+    expect(sut.password).toBe(password);
     expect(sut.isActive).toBe(isActive);
     expect(sut.createdAt).toBe(createdAt);
     expect(sut.updatedAt).toBe(updatedAt);

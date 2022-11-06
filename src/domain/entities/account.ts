@@ -16,6 +16,7 @@ export interface AccountPrimitivesProps {
   id: string
   userName: string
   email: string
+  password?: string
   isActive: boolean
   createdAt: Date
   updatedAt: Date
@@ -45,6 +46,10 @@ export class AccountEntity extends BaseEntity implements AggregateRoot<AccountPr
 
   get email(): Email {
     return this._email;
+  }
+
+  get password(): Password {
+    return this._password;
   }
 
   get isActive(): boolean {
