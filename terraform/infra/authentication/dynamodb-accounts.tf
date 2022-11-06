@@ -28,3 +28,9 @@ resource "aws_ssm_parameter" "baselog_dynamodb_accounts_table" {
   type  = "String"
   value = aws_dynamodb_table.baselog_accounts.name
 }
+
+resource "aws_ssm_parameter" "baselog_email_index" {
+  name = "baselog-${var.environment}-email-index"
+  type = "String"
+  value = "${var.environment}-email-index"
+}
