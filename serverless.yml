@@ -16,7 +16,7 @@ custom:
 
 functions:
   signup:
-    handler: ${self:custom.funcDir}/authentication/sign-up.handle
+    handler: ${self:custom.funcDir}/authentication/sign-up.handler
     events:
       - http:
           path: /authentication/signup

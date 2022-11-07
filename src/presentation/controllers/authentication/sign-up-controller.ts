@@ -9,7 +9,7 @@ export class SignUpController implements Controller<SignUpOutputDto> {
     private readonly signUpUseCase: UseCase<SignUpInputDto, SignUpOutputDto>,
   ) {}
 
-  async handle (httpRequest: HttpRequest): Promise<HttpResponse<SignUpOutputDto | OutputError>> {
+  async handler (httpRequest: HttpRequest): Promise<HttpResponse<SignUpOutputDto | OutputError>> {
     try {
       const { body } = httpRequest;
 
