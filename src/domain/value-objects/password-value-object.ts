@@ -1,6 +1,7 @@
 import { ValueObject } from '@domain/protocols';
 import { InvalidPasswordError } from '@domain/errors';
-import { validatePassword, hash, compare } from '@domain/utils';
+import { hash, compare } from '@domain/utils';
+import { validatePassword } from '@domain/validators';
 
 export class Password implements ValueObject<string> {
   private _passwordHash: string;

@@ -1,6 +1,6 @@
 import { ValueObject } from '@domain/protocols';
 import { InvalidUserNameError } from '@domain/errors';
-import { validateUserName } from '@domain/utils';
+import { validateUserName } from '@domain/validators';
 
 export class UserName implements ValueObject<string> {
   private _userName: string;
