@@ -7,7 +7,7 @@
     "test": "jest",
     "lint": "npx eslint --fix .",
     "build": "tsc -p tsconfig-build.json",
-    "start:dev": "sls offline"
+    "start": "sls offline"
   },
   "keywords": [],
   "author": "",
