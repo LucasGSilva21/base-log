@@ -2,7 +2,7 @@ import { ErrorBase } from '@domain/protocols';
 import { badRequest, serverError } from '@presentation/utils';
 import { HttpResponse, OutputError } from '@presentation/protocols';
 
-export const makeOutputErrorHelper = (error: ErrorBase): HttpResponse<OutputError> => {
+export const makeOutputError = (error: ErrorBase): HttpResponse<OutputError> => {
   // Domain Errors
   if (error.type === 'errors/authentication/invalidEmail') {
     return badRequest(error);
