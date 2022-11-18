@@ -41,9 +41,6 @@
   },
   "_moduleAliases": {
     "@shared": ".build/src/shared",
-    "@domain": ".build/src/domain",
-    "@application": ".build/src/application",
-    "@presentation": ".build/src/presentation",
-    "@framework": ".build/src/framework"
+    "@authentication": ".build/src/modules/authentication"
   }
 }

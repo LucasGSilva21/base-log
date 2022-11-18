@@ -30,10 +30,7 @@
     "baseUrl": ".",                                      /* Specify the base directory to resolve non-relative module names. */
     "paths": {                                           /* Specify a set of entries that re-map imports to additional lookup locations. */
       "@shared/*": ["./src/shared/*"],
-      "@domain/*": ["./src/domain/*"],
-      "@application/*": ["./src/application/*"],
-      "@presentation/*": ["./src/presentation/*"],
-      "@framework/*": ["./src/framework/*"],
+      "@authentication/*": ["./src/modules/authentication/*"],
       "@tests/*": ["./tests/*"]
     },
     "rootDirs": ["src"],                                 /* Allow multiple folders to be treated as one when resolving modules. */

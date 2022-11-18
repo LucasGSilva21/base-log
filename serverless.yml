@@ -12,11 +12,11 @@ plugins:
   - serverless-offline
 
 custom:
-  funcDir: src/framework/functions
+  funcDir: src/modules
 
 functions:
   signup:
-    handler: ${self:custom.funcDir}/authentication/sign-up.handler
+    handler: ${self:custom.funcDir}/authentication/framework/functions/sign-up.handler
     events:
       - http:
           path: /authentication/signup

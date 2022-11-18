@@ -1,4 +1,4 @@
-import { SignUpInputDto } from '@application/dtos/authentication';
+import { SignUpInputDto } from '@authentication/application/dtos';
 
 export const mockSignUpInput = (): SignUpInputDto => ({
   userName: 'Valid Name',

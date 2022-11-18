@@ -1,5 +1,5 @@
-import { AccountEntity } from '@domain/entities';
-import { AccountRepository } from '@application/repositories';
+import { AccountEntity } from '@authentication/domain/entities';
+import { AccountRepository } from '@authentication/application/repositories';
 import { mockCreateAccount } from '@tests/utils/mocks/entities';
 
 export const mockAccountRepository = (): AccountRepository => {

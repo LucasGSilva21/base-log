@@ -1,5 +1,5 @@
-import { UseCase } from '@application/protocols';
-import { SignUpInputDto, SignUpOutputDto } from '@application/dtos/authentication';
+import { UseCase } from '@authentication/application/protocols';
+import { SignUpInputDto, SignUpOutputDto } from '@authentication/application/dtos';
 import { mockCreateAccount } from '@tests/utils/mocks/entities';
 
 export const mockSignUpUseCase = (): UseCase<SignUpInputDto, SignUpOutputDto> => {
