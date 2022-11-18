@@ -16,7 +16,7 @@ const schemaDefinition: SchemaDefinition = {
   email: {
     type: String,
     index: {
-      name: 'dev-email-index',
+      name: process.env.EMAIL_INDEX,
     }
   },
   password: {
@@ -35,7 +35,7 @@ const modelOptions = {
 };
 
 export const AccountModel = dynamoose.model<Account>(
-  'baselog-dev-accounts',
+  process.env.DYNAMODB_ACCOUNTS,
   schema,
   modelOptions
 );
