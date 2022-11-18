@@ -16,12 +16,4 @@ custom:
   funcDir: src/modules
 
 functions:
-  signup:
-    handler: ${self:custom.funcDir}/authentication/framework/functions/sign-up.handler
-    environment:
-      DYNAMODB_ACCOUNTS: ${ssm:baselog-${self:custom.stage}-dynamodb-accounts-table}
-      EMAIL_INDEX: ${ssm:baselog-${self:custom.stage}-email-index}
-    events:
-      - http:
-          path: /authentication/signup
-          method: POST
+  - ${file(${self:custom.funcDir}/authentication/framework/functions/sign-up/_handler.yml)}
