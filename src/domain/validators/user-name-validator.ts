@@ -1,4 +1,4 @@
-import { hasNumber } from '@domain/utils';
+import { hasNumber } from '@shared/domain/utils';
 
 export const validateUserName = (name: string): boolean => {
   if (!name || !name.trim() || name.trim().length > 255 || hasNumber.test(name)) {

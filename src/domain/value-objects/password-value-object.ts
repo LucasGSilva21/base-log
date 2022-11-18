@@ -1,4 +1,4 @@
-import { ValueObject } from '@domain/protocols';
+import { ValueObject } from '@shared/domain/protocols';
 import { InvalidPasswordError } from '@domain/errors';
 import { hash, compare } from '@domain/utils';
 import { validatePassword } from '@domain/validators';

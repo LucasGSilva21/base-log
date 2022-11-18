@@ -1,4 +1,4 @@
-import { hasNumber, hasLowercase, hasUppercase } from '@domain/utils';
+import { hasNumber, hasLowercase, hasUppercase } from '@shared/domain/utils';
 
 describe('hasNumber', () => {
   test('should return true if the value contains a number', () => {

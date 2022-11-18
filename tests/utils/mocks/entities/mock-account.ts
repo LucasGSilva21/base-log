@@ -1,6 +1,7 @@
 import { AccountEntity } from '@domain/entities';
-import { Id, UserName, Email, Password } from '@domain/value-objects';
-import { generateUuid } from '@domain/utils';
+import { Id } from '@shared/domain/value-objects';
+import { UserName, Email, Password } from '@domain/value-objects';
+import { generateUuid } from '@shared/domain/utils';
 
 export const mockLoadAccount = (isActive = true): AccountEntity => {
   const uuid = generateUuid();

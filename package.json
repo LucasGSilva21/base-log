@@ -40,6 +40,7 @@
     "uuid": "^9.0.0"
   },
   "_moduleAliases": {
+    "@shared": ".build/src/shared",
     "@domain": ".build/src/domain",
     "@application": ".build/src/application",
     "@presentation": ".build/src/presentation",

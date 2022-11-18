@@ -196,6 +196,7 @@ module.exports = {
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources
   moduleNameMapper: {
+    '@shared/(.*)': '<rootDir>/src/shared/$1',
     '@domain/(.*)': '<rootDir>/src/domain/$1',
     '@application/(.*)': '<rootDir>/src/application/$1',
     '@presentation/(.*)': '<rootDir>/src/presentation/$1',

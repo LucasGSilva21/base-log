@@ -1,4 +1,4 @@
-import { ValueObject } from '@domain/protocols';
+import { ValueObject } from '@shared/domain/protocols';
 import { InvalidUserNameError } from '@domain/errors';
 import { validateUserName } from '@domain/validators';
 

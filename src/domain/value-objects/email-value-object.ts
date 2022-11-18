@@ -1,4 +1,4 @@
-import { ValueObject } from '@domain/protocols';
+import { ValueObject } from '@shared/domain/protocols';
 import { InvalidEmailError } from '@domain/errors';
 import { validateEmail } from '@domain/validators';
 

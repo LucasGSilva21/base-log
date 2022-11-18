@@ -1,4 +1,4 @@
-import { ErrorBase } from '@domain/protocols';
+import { ErrorBase } from '@shared/domain/protocols';
 
 export class DuplicatedEmailError extends Error implements ErrorBase {
   readonly type: string;

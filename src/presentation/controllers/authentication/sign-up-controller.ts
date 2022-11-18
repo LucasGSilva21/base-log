@@ -1,4 +1,4 @@
-import { ErrorBase } from '@domain/protocols';
+import { ErrorBase } from '@shared/domain/protocols';
 import { UseCase } from '@application/protocols';
 import { SignUpInputDto, SignUpOutputDto } from '@application/dtos/authentication';
 import { Controller, HttpRequest, HttpResponse, OutputError } from '@presentation/protocols';

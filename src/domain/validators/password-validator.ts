@@ -1,4 +1,4 @@
-import { hasNumber, hasLowercase, hasUppercase } from '@domain/utils';
+import { hasNumber, hasLowercase, hasUppercase } from '@shared/domain/utils';
 
 export const validatePassword = (password: string): boolean => {
   if (

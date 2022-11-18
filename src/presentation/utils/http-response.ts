@@ -1,4 +1,4 @@
-import { ErrorBase } from '@domain/protocols';
+import { ErrorBase } from '@shared/domain/protocols';
 import { HttpResponse, OutputError } from '@presentation/protocols';
 
 export const ok = (data: any): HttpResponse<any> => ({

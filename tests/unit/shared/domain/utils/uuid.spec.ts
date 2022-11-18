@@ -1,4 +1,4 @@
-import { generateUuid, validateUuid } from '@domain/utils';
+import { generateUuid, validateUuid } from '@shared/domain/utils';
 
 jest.mock('uuid', () => ({
   v4 (): string {

@@ -1,4 +1,4 @@
-import { ErrorBase } from '@domain/protocols';
+import { ErrorBase } from '@shared/domain/protocols';
 import { badRequest, serverError } from '@presentation/utils';
 import { HttpResponse, OutputError } from '@presentation/protocols';
 
