@@ -1,6 +1,6 @@
 import { APIGatewayEvent } from 'aws-lambda';
-import { Controller } from '@authentication/presentation/protocols';
-import { LambdaHandlerResult } from '@authentication/framework/protocols';
+import { Controller } from '@shared/presentation/protocols';
+import { LambdaHandlerResult } from '@shared/framework/protocols';
 
 export const normalizeEventData = (event: APIGatewayEvent) => {
   const body = JSON.parse(event.body);

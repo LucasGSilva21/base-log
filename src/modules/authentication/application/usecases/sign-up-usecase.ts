@@ -1,6 +1,6 @@
 import { AccountEntity } from '@authentication/domain/entities';
 import { UserName, Email, Password } from '@authentication/domain/value-objects';
-import { UseCase } from '@authentication/application/protocols';
+import { UseCase } from '@shared/application/protocols';
 import { DuplicatedEmailError } from '@authentication/application/errors';
 import { SignUpInputDto, SignUpOutputDto } from '@authentication/application/dtos';
 import { AccountRepository } from '@authentication/application/repositories';

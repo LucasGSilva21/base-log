@@ -1,4 +1,4 @@
-import { UseCase } from '@authentication/application/protocols';
+import { UseCase } from '@shared/application/protocols';
 import { SignUpInputDto, SignUpOutputDto } from '@authentication/application/dtos';
 import { mockCreateAccount } from '@tests/utils/mocks/entities';
 

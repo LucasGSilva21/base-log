@@ -1,8 +1,8 @@
 import { ErrorBase } from '@shared/domain/protocols';
-import { UseCase } from '@authentication/application/protocols';
+import { UseCase } from '@shared/application/protocols';
 import { SignUpInputDto, SignUpOutputDto } from '@authentication/application/dtos';
-import { Controller, HttpRequest, HttpResponse, OutputError } from '@authentication/presentation/protocols';
-import { created, makeOutputError } from '@authentication/presentation/utils';
+import { Controller, HttpRequest, HttpResponse, OutputError } from '@shared/presentation/protocols';
+import { created, makeOutputError } from '@shared/presentation/utils';
 
 export class SignUpController implements Controller<SignUpOutputDto> {
   constructor (
@@ -17,7 +17,6 @@ export class SignUpController implements Controller<SignUpOutputDto> {
 
       return created(account);
     } catch (error) {
-      console.log(error);
       return makeOutputError(error as ErrorBase);
     }
   }

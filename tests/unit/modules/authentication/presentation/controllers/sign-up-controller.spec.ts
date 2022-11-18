@@ -1,8 +1,8 @@
-import { UseCase } from '@authentication/application/protocols';
+import { UseCase } from '@shared/application/protocols';
 import { SignUpInputDto, SignUpOutputDto } from '@authentication/application/dtos';
-import { HttpRequest } from '@authentication/presentation/protocols';
+import { HttpRequest } from '@shared/presentation/protocols';
 import { SignUpController } from '@authentication/presentation/controllers';
-import { created, serverError } from '@authentication/presentation/utils';
+import { created, serverError } from '@shared/presentation/utils';
 import { mockCreateAccount } from '@tests/utils/mocks/entities';
 import { mockSignUpInput } from '@tests/utils/mocks/dtos/authentication';
 import { mockSignUpUseCase } from '@tests/utils/mocks/usecases/authentication';

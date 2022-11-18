@@ -1,6 +1,6 @@
 import { ErrorBase } from '@shared/domain/protocols';
-import { badRequest, serverError } from '@authentication/presentation/utils';
-import { HttpResponse, OutputError } from '@authentication/presentation/protocols';
+import { badRequest, serverError } from '@shared/presentation/utils';
+import { HttpResponse, OutputError } from '@shared/presentation/protocols';
 
 export const makeOutputError = (error: ErrorBase): HttpResponse<OutputError> => {
   // Domain Errors
@@ -21,7 +21,6 @@ export const makeOutputError = (error: ErrorBase): HttpResponse<OutputError> => 
   if (error.type === 'errors/authentication/duplicatedEmail') {
     return badRequest(error);
   }
-
 
   // Presentation Errors
   if (error.type === 'errors/common/invalidParameter') {
