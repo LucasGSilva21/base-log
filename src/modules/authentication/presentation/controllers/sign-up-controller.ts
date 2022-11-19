@@ -4,12 +4,12 @@ import { SignUpInputDto, SignUpOutputDto } from '@authentication/application/dto
 import { Controller, HttpRequest, HttpResponse, OutputError } from '@shared/presentation/protocols';
 import { created, makeOutputError } from '@shared/presentation/utils';
 
-export class SignUpController implements Controller<SignUpOutputDto> {
+export class SignUpController implements Controller<SignUpInputDto, SignUpOutputDto> {
   constructor (
     private readonly signUpUseCase: UseCase<SignUpInputDto, SignUpOutputDto>,
   ) {}
 
-  async handler (httpRequest: HttpRequest): Promise<HttpResponse<SignUpOutputDto | OutputError>> {
+  async handler (httpRequest: HttpRequest<SignUpInputDto>): Promise<HttpResponse<SignUpOutputDto | OutputError>> {
     try {
       const { body } = httpRequest;
 

@@ -24,7 +24,7 @@ interface SutTypes {
   signUpUseCaseStub: UseCase<SignUpInputDto, SignUpOutputDto>
 }
 
-const mockRequest = (): HttpRequest => {
+const mockRequest = (): HttpRequest<SignUpInputDto> => {
   return {
     body: mockSignUpInput()
   };

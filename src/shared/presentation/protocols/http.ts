@@ -1,7 +1,7 @@
 import { OutputError } from '@shared/presentation/protocols';
 
-export interface HttpRequest {
-  body?: any
+export interface HttpRequest<B> {
+  body?: B
   headers?: any
   params?: any
 }

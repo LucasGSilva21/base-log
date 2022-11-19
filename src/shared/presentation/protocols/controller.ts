@@ -1,5 +1,5 @@
 import { HttpRequest, HttpResponse, OutputError } from '@shared/presentation/protocols';
 
-export interface Controller<R> {
-  handler (httpRequest: HttpRequest): Promise<HttpResponse<R | OutputError>>
+export interface Controller<Request, Response> {
+  handler (httpRequest: HttpRequest<Request>): Promise<HttpResponse<Response | OutputError>>
 }
