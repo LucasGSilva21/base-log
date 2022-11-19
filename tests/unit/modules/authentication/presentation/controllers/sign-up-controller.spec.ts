@@ -2,6 +2,7 @@ import { UseCase } from '@shared/application/protocols';
 import { SignUpInputDto, SignUpOutputDto } from '@authentication/application/dtos';
 import { HttpRequest } from '@shared/presentation/protocols';
 import { SignUpController } from '@authentication/presentation/controllers';
+import { SignUpValidation } from '@authentication/presentation/validations';
 import { created, serverError } from '@shared/presentation/utils';
 import { mockCreateAccount } from '@tests/utils/mocks/entities';
 import { mockSignUpInput } from '@tests/utils/mocks/dtos/authentication';
@@ -32,7 +33,8 @@ const mockRequest = (): HttpRequest<SignUpInputDto> => {
 
 const makeSut = (): SutTypes => {
   const signUpUseCaseStub = mockSignUpUseCase();
-  const sut = new SignUpController(signUpUseCaseStub);
+  const signUpValidation = new SignUpValidation();
+  const sut = new SignUpController(signUpUseCaseStub, signUpValidation);
 
   return {
     sut,
