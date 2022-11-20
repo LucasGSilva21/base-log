@@ -1,4 +1,5 @@
 signup:
+  role: ${ssm:baselog-${self:custom.stage}-signup-iam-role}
   handler: ${self:custom.funcDir}/authentication/framework/functions/sign-up/sign-up.handler
   environment:
     DYNAMODB_ACCOUNTS: ${ssm:baselog-${self:custom.stage}-dynamodb-accounts-table}
