@@ -1,0 +1,9 @@
+signin:
+  handler: ${self:custom.funcDir}/authentication/framework/functions/sign-in/sign-in.handler
+  environment:
+    DYNAMODB_ACCOUNTS: ${ssm:baselog-${self:custom.stage}-dynamodb-accounts-table}
+    EMAIL_INDEX: ${ssm:baselog-${self:custom.stage}-email-index}
+  events:
+    - http:
+        path: /authentication/signin
+        method: POST

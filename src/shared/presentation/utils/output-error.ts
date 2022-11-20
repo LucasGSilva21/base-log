@@ -21,6 +21,9 @@ export const makeOutputError = (error: ErrorBase): HttpResponse<OutputError> => 
   if (error.type === 'errors/authentication/duplicatedEmail') {
     return badRequest(error);
   }
+  if (error.type === 'errors/authentication/invalidCredentials') {
+    return badRequest(error);
+  }
 
   // Presentation Errors
   if (error.type === 'errors/common/invalidParameter') {
