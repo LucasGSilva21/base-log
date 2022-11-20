@@ -4,6 +4,7 @@ signin:
   environment:
     DYNAMODB_ACCOUNTS: ${ssm:baselog-${self:custom.stage}-dynamodb-accounts-table}
     EMAIL_INDEX: ${ssm:baselog-${self:custom.stage}-email-index}
+    JWT_SECRET: ${ssm:baselog-${self:custom.stage}-jwt-secret}
   events:
     - http:
         path: /authentication/signin
