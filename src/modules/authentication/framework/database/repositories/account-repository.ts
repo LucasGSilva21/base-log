@@ -10,7 +10,8 @@ export class DynamodbAccountRepository implements AccountRepository {
       id: data.id.getValue(),
       userName: data.userName.getValue(),
       email: data.email.getValue(),
-      password: data.password.getValue()
+      password: data.password.getValue(),
+      isActive: data.isActive
     });
 
     return new AccountEntity({

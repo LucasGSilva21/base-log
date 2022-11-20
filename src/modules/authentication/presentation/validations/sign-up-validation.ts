@@ -3,9 +3,7 @@ import { Validation } from '@shared/presentation/protocols';
 import { InvalidParameterError } from '@shared/presentation/errors';
 import {
   IsString,
-  IsBoolean,
   IsNotEmpty,
-  IsOptional,
   validate as validator
 } from 'class-validator';
 
@@ -21,10 +19,6 @@ class SignUpValidationModel {
   @IsString()
   @IsNotEmpty()
     password: string;
-
-  @IsBoolean()
-  @IsOptional()
-    isActive?: boolean;
 }
 
 export class SignUpValidation implements Validation<SignUpInputDto> {
@@ -34,7 +28,6 @@ export class SignUpValidation implements Validation<SignUpInputDto> {
     signUpValidate.userName = input.userName;
     signUpValidate.email = input.email;
     signUpValidate.password = input.password;
-    signUpValidate.isActive = input.isActive;
 
     const errors = await validator(signUpValidate);
 

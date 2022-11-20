@@ -57,7 +57,7 @@ describe('Account Entity', () => {
     const { sut, accountRepositoryStub } = makeSut();
     const addSpy = jest.spyOn(accountRepositoryStub, 'create');
     await sut.exec(mockSignUpInput());
-    expect(addSpy).toHaveBeenCalledWith(mockLoadAccount(false));
+    expect(addSpy).toHaveBeenCalledWith(mockLoadAccount(true));
   });
 
   test('Should throw if findByEmail of AccountRepository throws', async () => {

@@ -38,7 +38,7 @@ export class AccountEntity extends BaseEntity implements AggregateRoot<AccountPr
     this._userName = props.userName;
     this._email = props.email;
     this._password = props.password;
-    this._isActive = props.isActive || false;
+    this._isActive = props.isActive ?? false;
   }
 
   get userName(): UserName {

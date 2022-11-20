@@ -14,7 +14,6 @@ export class SignUpUseCase implements UseCase<SignUpInputDto, SignUpOutputDto> {
     const userName = UserName.create(data.userName);
     const email = Email.create(data.email);
     const password = Password.create(data.password);
-    const isActive = data.isActive;
 
     const emailAlreadyExists = await this.accountRepository.findByEmail(email);
 
@@ -26,7 +25,7 @@ export class SignUpUseCase implements UseCase<SignUpInputDto, SignUpOutputDto> {
       userName,
       email,
       password,
-      isActive
+      isActive: true
     });
 
     const accountCreated = await this.accountRepository.create(account);
