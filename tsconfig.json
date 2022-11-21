@@ -31,6 +31,7 @@
     "paths": {                                           /* Specify a set of entries that re-map imports to additional lookup locations. */
       "@shared/*": ["./src/shared/*"],
       "@authentication/*": ["./src/modules/authentication/*"],
+      "@catalog/*": ["./src/modules/catalog/*"],
       "@tests/*": ["./tests/*"]
     },
     "rootDirs": ["src"],                                 /* Allow multiple folders to be treated as one when resolving modules. */

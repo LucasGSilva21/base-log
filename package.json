@@ -43,6 +43,7 @@
   },
   "_moduleAliases": {
     "@shared": ".build/src/shared",
-    "@authentication": ".build/src/modules/authentication"
+    "@authentication": ".build/src/modules/authentication",
+    "@catalog": ".build/src/modules/catalog"
   }
 }
