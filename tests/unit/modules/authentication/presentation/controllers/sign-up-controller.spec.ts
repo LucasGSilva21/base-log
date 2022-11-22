@@ -1,12 +1,13 @@
 import { UseCase } from '@shared/application/protocols';
 import { SignUpInputDto, SignUpOutputDto } from '@authentication/application/dtos';
-import { HttpRequest, Validation } from '@shared/presentation/protocols';
+import { HttpRequest } from '@shared/presentation/protocols';
 import { SignUpController } from '@authentication/presentation/controllers';
 import { SignUpValidation } from '@authentication/presentation/validations';
 import { created, serverError } from '@shared/presentation/utils';
 import { mockCreateAccount } from '@tests/utils/mocks/entities';
 import { mockSignUpInput } from '@tests/utils/mocks/dtos/authentication';
 import { mockSignUpUseCase } from '@tests/utils/mocks/usecases/authentication';
+import { mockSignUpValidation } from '@tests/utils/mocks/validations/authentication';
 import { throwError } from '@tests/utils/utils';
 import MockDate from 'mockdate';
 
@@ -22,7 +23,7 @@ jest.mock('uuid', () => ({
 
 interface SutTypes {
   sut: SignUpController
-  signUpValidationStub: Validation<SignUpInputDto>
+  signUpValidationStub: SignUpValidation
   signUpUseCaseStub: UseCase<SignUpInputDto, SignUpOutputDto>
 }
 
@@ -34,7 +35,7 @@ const mockRequest = (): HttpRequest<SignUpInputDto> => {
 
 const makeSut = (): SutTypes => {
   const signUpUseCaseStub = mockSignUpUseCase();
-  const signUpValidationStub = new SignUpValidation();
+  const signUpValidationStub = mockSignUpValidation();
   const sut = new SignUpController(signUpUseCaseStub, signUpValidationStub);
 
   return {
