@@ -11,7 +11,7 @@ export const normalizeEventData = (event: APIGatewayEvent) => {
   };
 };
 
-export const makeLambdaHandler = (controller: Controller<any>) => {
+export const makeLambdaHandler = (controller: Controller<any, any>) => {
   return async (event: APIGatewayEvent): Promise<LambdaHandlerResult> => {
     const httpRequest = normalizeEventData(event);
     const { statusCode, body } = await controller.handler(httpRequest);
