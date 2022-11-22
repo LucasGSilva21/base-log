@@ -12,15 +12,14 @@ export class SignInUseCase implements UseCase<SignInInputDto, SignInOutputDto> {
 
   async exec (data: SignInInputDto): Promise<SignInOutputDto> {
     const email = Email.create(data.email);
-    const password = Password.create(data.password);
+    Password.create(data.password);
 
     const accountExists = await this.accountRepository.findByEmail(email);
 
     if (!accountExists) {
       throw new InvalidCredentialsError();
     }
-
-    if (!password.comparePassword(accountExists.password.getValue())) {
+    if (!(await accountExists.password.comparePassword(data.password))) {
       throw new InvalidCredentialsError();
     }
 
