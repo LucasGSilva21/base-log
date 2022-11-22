@@ -1,6 +1,6 @@
 import { UseCase } from '@shared/application/protocols';
 import { SignUpInputDto, SignUpOutputDto } from '@authentication/application/dtos';
-import { HttpRequest } from '@shared/presentation/protocols';
+import { HttpRequest, Validation } from '@shared/presentation/protocols';
 import { SignUpController } from '@authentication/presentation/controllers';
 import { SignUpValidation } from '@authentication/presentation/validations';
 import { created, serverError } from '@shared/presentation/utils';
@@ -22,6 +22,7 @@ jest.mock('uuid', () => ({
 
 interface SutTypes {
   sut: SignUpController
+  signUpValidationStub: Validation<SignUpInputDto>
   signUpUseCaseStub: UseCase<SignUpInputDto, SignUpOutputDto>
 }
 
@@ -33,11 +34,12 @@ const mockRequest = (): HttpRequest<SignUpInputDto> => {
 
 const makeSut = (): SutTypes => {
   const signUpUseCaseStub = mockSignUpUseCase();
-  const signUpValidation = new SignUpValidation();
-  const sut = new SignUpController(signUpUseCaseStub, signUpValidation);
+  const signUpValidationStub = new SignUpValidation();
+  const sut = new SignUpController(signUpUseCaseStub, signUpValidationStub);
 
   return {
     sut,
+    signUpValidationStub,
     signUpUseCaseStub
   };
 };
@@ -56,6 +58,13 @@ describe('Account Entity', () => {
     const usecaseSpy = jest.spyOn(signUpUseCaseStub, 'exec');
     await sut.handler(mockRequest());
     expect(usecaseSpy).toHaveBeenCalledWith(mockSignUpInput());
+  });
+
+  test('Should call SignUpValidation with correct values', async () => {
+    const { sut, signUpValidationStub } = makeSut();
+    const validationSpy = jest.spyOn(signUpValidationStub, 'validate');
+    await sut.handler(mockRequest());
+    expect(validationSpy).toHaveBeenCalledWith(mockSignUpInput());
   });
 
   test('Should return 201 if valid data is provided', async () => {
