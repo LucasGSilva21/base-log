@@ -10,8 +10,20 @@ describe('UserName Value Object', () => {
     expect(getValue).toBe(validUserName);
   });
 
-  test('should throw if send a invalid user name', () => {
-    const invalidUserName = 'invalid-user-name-123';
+  test('should throw if the value is a empty string', () => {
+    const invalidUserName: any = null;
+    expect(() => UserName.create(invalidUserName)).toThrow(InvalidUserNameError);
+    expect(() => UserName.create(invalidUserName)).toThrow(`The user name "${invalidUserName}" is invalid`);
+  });
+
+  test('should throw if the value contains only whitespace', () => {
+    const invalidUserName = ' ';
+    expect(() => UserName.create(invalidUserName)).toThrow(InvalidUserNameError);
+    expect(() => UserName.create(invalidUserName)).toThrow(`The user name "${invalidUserName}" is invalid`);
+  });
+
+  test('should throw if the value contains numbers', () => {
+    const invalidUserName = 'invalid123';
     expect(() => UserName.create(invalidUserName)).toThrow(InvalidUserNameError);
     expect(() => UserName.create(invalidUserName)).toThrow(`The user name "${invalidUserName}" is invalid`);
   });

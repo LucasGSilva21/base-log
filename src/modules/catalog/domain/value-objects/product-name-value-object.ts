@@ -1,15 +1,14 @@
 import { ValueObject } from '@shared/domain/protocols';
 import { InvalidProductNameError } from '@catalog/domain/errors';
-import { validateProductName } from '@catalog/domain/validators';
 
 export class ProductName implements ValueObject<string> {
   private _productName: string;
 
-  private constructor(productName: string) {
+  private constructor (productName: string) {
     this._productName = productName;
   }
 
-  static create(productName: string): ProductName {
+  static create (productName: string): ProductName {
     const isValid = this.validate(productName);
     if (!isValid) {
       throw new InvalidProductNameError(productName);
@@ -17,13 +16,16 @@ export class ProductName implements ValueObject<string> {
     return new ProductName(productName);
   }
 
-  getValue(): string {
+  getValue (): string {
     return this._productName;
   }
 
-  static validate(productName: string): boolean {
-    const isValid = validateProductName(productName);
-    if (!isValid) {
+  static validate (productName: string): boolean {
+    if (
+      !productName ||
+      !productName.trim() ||
+      productName.trim().length > 255
+    ) {
       return false;
     }
     return true;

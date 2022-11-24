@@ -32,8 +32,26 @@ describe('Password Value Object', () => {
     expect(compare).toBe(true);
   });
 
-  test('should throw if send a invalid password', () => {
-    const invalidPassword = 'invalid';
+  test('should throw if provided a empty string', () => {
+    const invalidPassword = '';
+    expect(() => Password.create(invalidPassword)).toThrow(InvalidPasswordError);
+    expect(() => Password.create(invalidPassword)).toThrow('The password provided is invalid');
+  });
+
+  test('should throw if provided a least one upper case letter', () => {
+    const invalidPassword = 'invalid-password';
+    expect(() => Password.create(invalidPassword)).toThrow(InvalidPasswordError);
+    expect(() => Password.create(invalidPassword)).toThrow('The password provided is invalid');
+  });
+
+  test('should throw if provided a least one lower case letter', () => {
+    const invalidPassword = '#INVALID#';
+    expect(() => Password.create(invalidPassword)).toThrow(InvalidPasswordError);
+    expect(() => Password.create(invalidPassword)).toThrow('The password provided is invalid');
+  });
+
+  test('should throw if provided a least one special character', () => {
+    const invalidPassword = 'invalidPassword';
     expect(() => Password.create(invalidPassword)).toThrow(InvalidPasswordError);
     expect(() => Password.create(invalidPassword)).toThrow('The password provided is invalid');
   });

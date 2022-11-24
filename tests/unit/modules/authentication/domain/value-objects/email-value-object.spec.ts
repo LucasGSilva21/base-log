@@ -11,8 +11,20 @@ describe('Email Value Object', () => {
     expect(getValue).toBe(validEmail);
   });
 
-  test('should throw if send a invalid email', () => {
+  test('should throw if provided a invalid email', () => {
     const invalidEmail = 'invalid-email';
+    expect(() => Email.create(invalidEmail)).toThrow(InvalidEmailError);
+    expect(() => Email.create(invalidEmail)).toThrow(`The email "${invalidEmail}" is invalid`);
+  });
+
+  test('should throw if provided a invalid email without dot', () => {
+    const invalidEmail = 'valid@email';
+    expect(() => Email.create(invalidEmail)).toThrow(InvalidEmailError);
+    expect(() => Email.create(invalidEmail)).toThrow(`The email "${invalidEmail}" is invalid`);
+  });
+
+  test('should throw if provided a empty string', () => {
+    const invalidEmail = '';
     expect(() => Email.create(invalidEmail)).toThrow(InvalidEmailError);
     expect(() => Email.create(invalidEmail)).toThrow(`The email "${invalidEmail}" is invalid`);
   });

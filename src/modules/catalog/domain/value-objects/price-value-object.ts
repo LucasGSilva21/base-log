@@ -1,15 +1,14 @@
 import { ValueObject } from '@shared/domain/protocols';
 import { InvalidPriceError } from '@catalog/domain/errors';
-import { validatePrice } from '@catalog/domain/validators';
 
 export class Price implements ValueObject<number> {
   private _price: number;
 
-  private constructor(price: number) {
+  private constructor (price: number) {
     this._price = price;
   }
 
-  static create(price: number): Price {
+  static create (price: number): Price {
     const isValid = this.validate(price);
     if (!isValid) {
       throw new InvalidPriceError(price);
@@ -17,13 +16,16 @@ export class Price implements ValueObject<number> {
     return new Price(price);
   }
 
-  getValue(): number {
+  getValue (): number {
     return this._price;
   }
 
-  static validate(price: number): boolean {
-    const isValid = validatePrice(price);
-    if (!isValid) {
+  static validate (price: number): boolean {
+    if (
+      !price ||
+      price < 0 ||
+      !Number.isInteger(price)
+    ) {
       return false;
     }
     return true;
