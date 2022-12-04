@@ -1,0 +1,9 @@
+check-stock:
+  role: ${ssm:baselog-${self:custom.stage}-check-stock-iam-role}
+  handler: ${self:custom.funcDir}/catalog/framework/functions/check-stock/check-stock.handler
+  environment:
+    DYNAMODB_PRODUCTS: ${ssm:baselog-${self:custom.stage}-dynamodb-products-table}
+  events:
+    - http:
+        path: /catalog/stock/{id}
+        method: GET

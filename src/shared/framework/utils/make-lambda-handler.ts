@@ -3,11 +3,15 @@ import { Controller } from '@shared/presentation/protocols';
 import { LambdaHandlerResult } from '@shared/framework/protocols';
 
 export const normalizeEventData = (event: APIGatewayEvent) => {
+  console.log('@@@', event.pathParameters);
+  console.log('@@@', event.queryStringParameters);
   const body = JSON.parse(event.body);
+  const params = event.pathParameters;
+  const query = event.queryStringParameters;
   return {
-    body: {
-      ...body
-    }
+    body: { ...body },
+    params: { ...params },
+    query: { ...query}
   };
 };
 

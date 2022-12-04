@@ -3,7 +3,7 @@ import { Validation } from '@shared/presentation/protocols';
 import { InvalidParameterError } from '@shared/presentation/errors';
 import {
   IsString,
-  IsNumber,
+  IsNumberString,
   IsNotEmpty,
   validate as validator
 } from 'class-validator';
@@ -13,7 +13,7 @@ class CheckStockValidationModel {
   @IsNotEmpty()
     productId: string;
 
-  @IsNumber()
+  @IsNumberString()
   @IsNotEmpty()
     amount: number;
 }

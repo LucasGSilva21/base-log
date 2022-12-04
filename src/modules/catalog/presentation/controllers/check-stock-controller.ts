@@ -18,13 +18,19 @@ export class CheckStockController implements Controller<CheckStockInputDto, Chec
 
   async handler (httpRequest: HttpRequest<CheckStockInputDto>): Promise<HttpResponse<CheckStockOutputDto | OutputError>> {
     try {
-      const { body, params } = httpRequest;
+      const { params, query } = httpRequest;
 
-      await this.validation.validate(body);
+      console.log('##', params);
+      console.log('##', query);
+
+      await this.validation.validate({
+        productId: params.id,
+        amount: query.amount
+      });
 
       const account = await this.checkStockUseCase.exec({
         productId: params.id,
-        amount: body.amount
+        amount: Number(query.amount)
       });
 
       return ok(account);
