@@ -24,4 +24,22 @@ export class DynamodbProductRepository implements ProductRepository {
       updatedAt: product.updatedAt
     });
   }
+
+  async list (): Promise<ProductEntity[]> {
+    const products = await ProductModel.scan().exec();
+
+    if (products) {
+      return products.map(product => new ProductEntity({
+        id: Id.create(product.id),
+        productName: ProductName.create(product.productName),
+        price: Price.create(product.price),
+        amount: Amount.create(product.amount),
+        isActive: product.isActive,
+        createdAt: product.createdAt,
+        updatedAt: product.updatedAt
+      }));
+    }
+
+    return null;
+  }
 }
