@@ -1,0 +1,9 @@
+create-product:
+  role: ${ssm:baselog-${self:custom.stage}-create-product-iam-role}
+  handler: ${self:custom.funcDir}/catalog/framework/functions/create-product/create-product.handler
+  environment:
+    DYNAMODB_PRODUCTS: ${ssm:baselog-${self:custom.stage}-dynamodb-products-table}
+  events:
+    - http:
+        path: /catalog/product
+        method: POST
