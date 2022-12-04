@@ -1,3 +1,4 @@
-export interface CheckStockInputDto {  
+export interface CheckStockInputDto {
+  productId: string
   amount: number
 }
