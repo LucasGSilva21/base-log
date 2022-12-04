@@ -1,0 +1,9 @@
+list-products:
+  role: ${ssm:baselog-${self:custom.stage}-list-products-iam-role}
+  handler: ${self:custom.funcDir}/catalog/framework/functions/list-products/list-products.handler
+  environment:
+    DYNAMODB_PRODUCTS: ${ssm:baselog-${self:custom.stage}-dynamodb-products-table}
+  events:
+    - http:
+        path: /catalog/product
+        method: GET
