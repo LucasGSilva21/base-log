@@ -44,6 +44,7 @@
   "_moduleAliases": {
     "@shared": ".build/src/shared",
     "@authentication": ".build/src/modules/authentication",
-    "@catalog": ".build/src/modules/catalog"
+    "@catalog": ".build/src/modules/catalog",
+    "@payment": ".build/src/modules/payment"
   }
 }

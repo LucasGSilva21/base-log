@@ -199,6 +199,7 @@ module.exports = {
     '@shared/(.*)': '<rootDir>/src/shared/$1',
     '@authentication/(.*)': '<rootDir>/src/modules/authentication/$1',
     '@catalog/(.*)': '<rootDir>/src/modules/catalog/$1',
+    '@payment/(.*)': '<rootDir>/src/modules/payment/$1',
     '@tests/(.*)': '<rootDir>/tests/$1'
   }
 };

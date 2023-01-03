@@ -32,6 +32,7 @@
       "@shared/*": ["./src/shared/*"],
       "@authentication/*": ["./src/modules/authentication/*"],
       "@catalog/*": ["./src/modules/catalog/*"],
+      "@payment/*": ["./src/modules/payment/*"],
       "@tests/*": ["./tests/*"]
     },
     "rootDirs": ["src"],                                 /* Allow multiple folders to be treated as one when resolving modules. */
