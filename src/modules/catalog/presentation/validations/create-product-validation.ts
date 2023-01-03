@@ -15,7 +15,7 @@ class CreateProductValidationModel {
 
   @IsNumber()
   @IsNotEmpty()
-    price: number;
+    priceInCents: number;
 
   @IsNumber()
   @IsNotEmpty()
@@ -27,7 +27,7 @@ export class CreateProductValidation implements Validation<CreateProductInputDto
     const createProductValidate = new CreateProductValidationModel();
 
     createProductValidate.productName = input.productName;
-    createProductValidate.price = input.price;
+    createProductValidate.priceInCents = input.priceInCents;
     createProductValidate.amount = input.amount;
 
     const errors = await validator(createProductValidate);

@@ -1,5 +1,5 @@
 export interface CreateProductInputDto {
   productName: string
-  price: number
+  priceInCents: number
   amount: number
 }

@@ -13,7 +13,7 @@ const schemaDefinition: SchemaDefinition = {
   productName: {
     type: String
   },
-  price: {
+  priceInCents: {
     type: Number,
   },
   amount: {

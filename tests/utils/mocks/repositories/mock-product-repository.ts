@@ -7,6 +7,14 @@ export const mockProductRepository = (): ProductRepository => {
     async create (): Promise<ProductEntity> {
       return Promise.resolve(mockCreateProduct());
     }
+
+    async list (): Promise<ProductEntity[]> {
+      return Promise.resolve([mockCreateProduct()]);
+    }
+
+    async findById (): Promise<ProductEntity> {
+      return Promise.resolve(mockCreateProduct());
+    }
   }
 
   return new ProductRepositoryStub();

@@ -1,12 +1,12 @@
 import { BaseEntity } from '@shared/domain/utils/base-entity';
 import { AggregateRoot } from '@shared/domain/protocols';
 import { Id } from '@shared/domain/value-objects';
-import { ProductName, Price, Amount } from '@catalog/domain/value-objects';
+import { ProductName, PriceInCents, Amount } from '@catalog/domain/value-objects';
 
 export interface ProductProps {
   id?: Id
   productName: ProductName
-  price: Price
+  priceInCents: PriceInCents
   amount: Amount
   isActive?: boolean
   createdAt?: Date
@@ -16,7 +16,7 @@ export interface ProductProps {
 export interface ProductPrimitivesProps {
   id: string
   productName: string
-  price: number
+  priceInCents: number
   amount: number
   isActive: boolean
   createdAt: Date
@@ -25,7 +25,7 @@ export interface ProductPrimitivesProps {
 
 export class ProductEntity extends BaseEntity implements AggregateRoot<ProductPrimitivesProps> {
   private _productName: ProductName;
-  private _price: Price;
+  private _priceInCents: PriceInCents;
   private _amount: Amount;
   private _isActive: boolean;
 
@@ -36,7 +36,7 @@ export class ProductEntity extends BaseEntity implements AggregateRoot<ProductPr
       props.updatedAt
     );
     this._productName = props.productName;
-    this._price = props.price;
+    this._priceInCents = props.priceInCents;
     this._amount = props.amount;
     this._isActive = props.isActive ?? false;
   }
@@ -45,8 +45,8 @@ export class ProductEntity extends BaseEntity implements AggregateRoot<ProductPr
     return this._productName;
   }
 
-  get price(): Price {
-    return this._price;
+  get priceInCents(): PriceInCents {
+    return this._priceInCents;
   }
 
   get amount(): Amount {
@@ -61,7 +61,7 @@ export class ProductEntity extends BaseEntity implements AggregateRoot<ProductPr
     return {
       id: this.id.getValue(),
       productName: this.productName.getValue(),
-      price: this.price.getValue(),
+      priceInCents: this.priceInCents.getValue(),
       amount: this.amount.getValue(),
       isActive: this.isActive,
       createdAt: this.createdAt,

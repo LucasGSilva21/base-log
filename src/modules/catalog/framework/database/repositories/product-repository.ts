@@ -1,6 +1,6 @@
 import { Id } from '@shared/domain/value-objects';
 import { ProductEntity } from '@catalog/domain/entities';
-import { ProductName, Price, Amount } from '@catalog/domain/value-objects';
+import { ProductName, PriceInCents, Amount } from '@catalog/domain/value-objects';
 import { ProductRepository } from '@catalog/application/repositories';
 import { ProductModel } from '@catalog/framework/database/models';
 
@@ -9,7 +9,7 @@ export class DynamodbProductRepository implements ProductRepository {
     const product = await ProductModel.create({
       id: data.id.getValue(),
       productName: data.productName.getValue(),
-      price: data.price.getValue(),
+      priceInCents: data.priceInCents.getValue(),
       amount: data.amount.getValue(),
       isActive: data.isActive
     });
@@ -17,7 +17,7 @@ export class DynamodbProductRepository implements ProductRepository {
     return new ProductEntity({
       id: Id.create(product.id),
       productName: ProductName.create(product.productName),
-      price: Price.create(product.price),
+      priceInCents: PriceInCents.create(product.priceInCents),
       amount: Amount.create(product.amount),
       isActive: product.isActive,
       createdAt: product.createdAt,
@@ -32,7 +32,7 @@ export class DynamodbProductRepository implements ProductRepository {
       return products.map(product => new ProductEntity({
         id: Id.create(product.id),
         productName: ProductName.create(product.productName),
-        price: Price.create(product.price),
+        priceInCents: PriceInCents.create(product.priceInCents),
         amount: Amount.create(product.amount),
         isActive: product.isActive,
         createdAt: product.createdAt,
@@ -50,7 +50,7 @@ export class DynamodbProductRepository implements ProductRepository {
       return new ProductEntity({
         id: Id.create(product[0].id),
         productName: ProductName.create(product[0].productName),
-        price: Price.create(product[0].price),
+        priceInCents: PriceInCents.create(product[0].priceInCents),
         amount: Amount.create(product[0].amount),
         isActive: product[0].isActive,
         createdAt: product[0].createdAt,

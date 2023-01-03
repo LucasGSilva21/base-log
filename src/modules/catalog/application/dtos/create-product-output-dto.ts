@@ -1,7 +1,7 @@
 export interface CreateProductOutputDto {
   id: string
   productName: string
-  price: number
+  priceInCents: number
   amount: number
   isActive: boolean
   createdAt: Date
