@@ -20,9 +20,6 @@ export class CheckStockController implements Controller<CheckStockInputDto, Chec
     try {
       const { params, query } = httpRequest;
 
-      console.log('##', params);
-      console.log('##', query);
-
       await this.validation.validate({
         productId: params.id,
         amount: query.amount
