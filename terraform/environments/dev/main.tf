@@ -11,3 +11,10 @@ module "catalog" {
   write_capacity = 1
   read_capacity  = 1
 }
+
+module "payment" {
+  source         = "../../infra/payment"
+  environment    = var.environment
+  write_capacity = 1
+  read_capacity  = 1
+}
