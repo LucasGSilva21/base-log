@@ -28,7 +28,7 @@ export class DynamodbAccountRepository implements AccountRepository {
   async findByEmail (email: Email): Promise<AccountEntity> {
     const account = await AccountModel.query('email')
       .eq(email.getValue())
-      .using('dev-email-index')
+      .using(process.env.EMAIL_INDEX)
       .exec();
 
     if (!account[0]) {
