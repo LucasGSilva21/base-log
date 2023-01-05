@@ -1,6 +1,7 @@
 import { UseCase } from '@shared/application/protocols';
+import { Amount } from '@shared/domain/value-objects';
 import { ProductEntity } from '@catalog/domain/entities';
-import { ProductName, PriceInCents, Amount } from '@catalog/domain/value-objects';
+import { ProductName, PriceInCents } from '@catalog/domain/value-objects';
 import { CreateProductInputDto, CreateProductOutputDto } from '@catalog/application/dtos';
 import { ProductRepository } from '@catalog/application/repositories';
 

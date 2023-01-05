@@ -1,7 +1,7 @@
-import { ProductEntity } from '@catalog/domain/entities';
-import { ProductName, PriceInCents, Amount } from '@catalog/domain/value-objects';
-import { Id } from '@shared/domain/value-objects';
+import { Id, Amount } from '@shared/domain/value-objects';
 import { generateUuid } from '@shared/domain/utils';
+import { ProductEntity } from '@catalog/domain/entities';
+import { ProductName, PriceInCents } from '@catalog/domain/value-objects';
 
 export const mockLoadProduct = (isActive = true): ProductEntity => {
   const uuid = generateUuid();

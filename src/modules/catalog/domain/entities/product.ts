@@ -1,7 +1,7 @@
 import { BaseEntity } from '@shared/domain/utils/base-entity';
 import { AggregateRoot } from '@shared/domain/protocols';
-import { Id } from '@shared/domain/value-objects';
-import { ProductName, PriceInCents, Amount } from '@catalog/domain/value-objects';
+import { Id, Amount } from '@shared/domain/value-objects';
+import { ProductName, PriceInCents } from '@catalog/domain/value-objects';
 
 export interface ProductProps {
   id?: Id
