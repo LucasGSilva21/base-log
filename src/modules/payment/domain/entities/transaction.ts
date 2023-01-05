@@ -1,7 +1,7 @@
 import { BaseEntity } from '@shared/domain/utils/base-entity';
 import { AggregateRoot } from '@shared/domain/protocols';
 import { Id } from '@shared/domain/value-objects';
-import { TotalInCents } from '@payment/domain/value-objects';
+import { TotalInCents } from '@shared/domain/value-objects';
 
 export enum TransactionStatus {
   PENDING = 1,
