@@ -1,5 +1,5 @@
 import { ValueObject } from '@shared/domain/protocols';
-import { InvalidTotalInCentsError } from '@payment/domain/errors';
+import { InvalidTotalInCentsError } from '@shared/domain/errors';
 
 export class TotalInCents implements ValueObject<number> {
   private _totalInCents: number;

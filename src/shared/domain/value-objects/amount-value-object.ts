@@ -1,5 +1,5 @@
 import { ValueObject } from '@shared/domain/protocols';
-import { InvalidAmountError } from '@catalog/domain/errors';
+import { InvalidAmountError } from '@shared/domain/errors';
 
 export class Amount implements ValueObject<number> {
   private _amount: number;
