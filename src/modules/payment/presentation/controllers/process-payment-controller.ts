@@ -1,32 +1,25 @@
-import { ErrorBase } from '@shared/domain/protocols';
 import { UseCase } from '@shared/application/protocols';
 import { ProcessPaymentInputDto, ProcessPaymentOutputDto } from '@payment/application/dtos';
-import { ok, makeOutputError } from '@shared/presentation/utils';
 import {
-  Controller,
   Validation,
-  HttpRequest,
-  HttpResponse,
   OutputError
 } from '@shared/presentation/protocols';
 
-export class ProcessPaymentController implements Controller<ProcessPaymentInputDto, ProcessPaymentOutputDto> {
+export class ProcessPaymentController {
   constructor (
     private readonly processPaymentUseCase: UseCase<ProcessPaymentInputDto, ProcessPaymentOutputDto>,
     private readonly validation: Validation<ProcessPaymentInputDto>
   ) {}
 
-  async handler (httpRequest: HttpRequest<ProcessPaymentInputDto>): Promise<HttpResponse<ProcessPaymentOutputDto | OutputError>> {
+  async handler (input: ProcessPaymentInputDto): Promise<ProcessPaymentOutputDto | OutputError> {
     try {
-      const { body } = httpRequest;
+      await this.validation.validate(input);
 
-      await this.validation.validate(body);
+      const processPayment = await this.processPaymentUseCase.exec(input);
 
-      const processPayment = await this.processPaymentUseCase.exec(body);
-
-      return ok(processPayment);
+      return processPayment;
     } catch (error) {
-      return makeOutputError(error as ErrorBase);
+      return error as OutputError;
     }
   }
 }
