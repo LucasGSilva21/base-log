@@ -22,9 +22,9 @@ export class ProcessPaymentController implements Controller<ProcessPaymentInputD
 
       await this.validation.validate(body);
 
-      const account = await this.processPaymentUseCase.exec(body);
+      const processPayment = await this.processPaymentUseCase.exec(body);
 
-      return ok(account);
+      return ok(processPayment);
     } catch (error) {
       return makeOutputError(error as ErrorBase);
     }
