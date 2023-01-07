@@ -11,7 +11,7 @@ export const mockLoadProduct = (isActive = true): ProductEntity => {
   const amount = Amount.create(10);
   const createdAt = new Date();
   const updatedAt = new Date();
-  const product = new ProductEntity({
+  const product = ProductEntity.create({
     id, productName, priceInCents, amount, isActive, createdAt, updatedAt
   });
 
@@ -22,7 +22,7 @@ export const mockCreateProduct = (isActive = true): ProductEntity => {
   const productName = ProductName.create('Valid Name');
   const priceInCents = PriceInCents.create(1000);
   const amount = Amount.create(10);
-  const product = new ProductEntity({
+  const product = ProductEntity.create({
     productName, priceInCents, amount, isActive
   });
 

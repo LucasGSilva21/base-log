@@ -29,7 +29,7 @@ export class ProductEntity extends BaseEntity implements AggregateRoot<ProductPr
   private _amount: Amount;
   private _isActive: boolean;
 
-  constructor(props: ProductProps) {
+  private constructor(props: ProductProps) {
     super(
       props.id,
       props.createdAt,
@@ -39,6 +39,10 @@ export class ProductEntity extends BaseEntity implements AggregateRoot<ProductPr
     this._priceInCents = props.priceInCents;
     this._amount = props.amount;
     this._isActive = props.isActive ?? false;
+  }
+
+  static create(props: ProductProps): ProductEntity {
+    return new ProductEntity(props);
   }
 
   get productName(): ProductName {

@@ -14,7 +14,7 @@ export class DynamodbProductRepository implements ProductRepository {
       isActive: data.isActive
     });
 
-    return new ProductEntity({
+    return ProductEntity.create({
       id: Id.create(product.id),
       productName: ProductName.create(product.productName),
       priceInCents: PriceInCents.create(product.priceInCents),
@@ -29,7 +29,7 @@ export class DynamodbProductRepository implements ProductRepository {
     const products = await ProductModel.scan().exec();
 
     if (products) {
-      return products.map(product => new ProductEntity({
+      return products.map(product => ProductEntity.create({
         id: Id.create(product.id),
         productName: ProductName.create(product.productName),
         priceInCents: PriceInCents.create(product.priceInCents),
@@ -47,7 +47,7 @@ export class DynamodbProductRepository implements ProductRepository {
     const product = await ProductModel.query('id').eq(id.getValue()).exec();
 
     if (product) {
-      return new ProductEntity({
+      return ProductEntity.create({
         id: Id.create(product[0].id),
         productName: ProductName.create(product[0].productName),
         priceInCents: PriceInCents.create(product[0].priceInCents),

@@ -14,7 +14,7 @@ export class DynamodbAccountRepository implements AccountRepository {
       isActive: data.isActive
     });
 
-    return new AccountEntity({
+    return AccountEntity.create({
       id: Id.create(account.id),
       userName: UserName.create(account.userName),
       email: Email.create(account.email),
@@ -35,7 +35,7 @@ export class DynamodbAccountRepository implements AccountRepository {
       return null;
     }
 
-    return new AccountEntity({
+    return AccountEntity.create({
       id: Id.create(account[0].id),
       userName: UserName.create(account[0].userName),
       email: Email.create(account[0].email),

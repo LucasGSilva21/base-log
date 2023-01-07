@@ -15,7 +15,7 @@ export class ProcessPaymentUseCase implements UseCase<ProcessPaymentInputDto, Pr
     const orderId = Id.create(data.orderId);
     const totalInCents = TotalInCents.create(data.totalInCents);
 
-    const transaction = new TransactionEntity({
+    const transaction = TransactionEntity.create({
       orderId,
       totalInCents,
       status: TransactionStatus.PENDING

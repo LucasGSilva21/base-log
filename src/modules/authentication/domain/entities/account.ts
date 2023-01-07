@@ -29,7 +29,7 @@ export class AccountEntity extends BaseEntity implements AggregateRoot<AccountPr
   private _password: Password;
   private _isActive: boolean;
 
-  constructor(props: AccountProps) {
+  private constructor(props: AccountProps) {
     super(
       props.id,
       props.createdAt,
@@ -39,6 +39,10 @@ export class AccountEntity extends BaseEntity implements AggregateRoot<AccountPr
     this._email = props.email;
     this._password = props.password;
     this._isActive = props.isActive ?? false;
+  }
+
+  static create(props: AccountProps): AccountEntity {
+    return new AccountEntity(props);
   }
 
   get userName(): UserName {

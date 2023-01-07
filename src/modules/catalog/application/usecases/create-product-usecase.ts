@@ -15,7 +15,7 @@ export class CreateProductUseCase implements UseCase<CreateProductInputDto, Crea
     const priceInCents = PriceInCents.create(data.priceInCents);
     const amount = Amount.create(data.amount);
 
-    const product = new ProductEntity({
+    const product = ProductEntity.create({
       productName,
       priceInCents,
       amount,

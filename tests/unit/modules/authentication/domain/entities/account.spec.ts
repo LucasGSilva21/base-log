@@ -34,7 +34,7 @@ const makeSut = (): SutTypes => {
   const isActive = true;
   const createdAt = new Date();
   const updatedAt = new Date();
-  const sut = new AccountEntity({
+  const sut = AccountEntity.create({
     id, userName, email, password, isActive, createdAt, updatedAt
   });
 
@@ -69,7 +69,7 @@ describe('Account Entity', () => {
     const userName = UserName.create('Valid Name');
     const email = Email.create('valid@email.com');
     const password = Password.create('#Valid123#');
-    const account = new AccountEntity({ userName, email, password });
+    const account = AccountEntity.create({ userName, email, password });
     const isValid = await account.comparePassword('any_value');
     expect(isValid).toBe(true);
   });

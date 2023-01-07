@@ -11,7 +11,7 @@ export const mockLoadAccount = (isActive = true): AccountEntity => {
   const password = Password.create('#Valid123#');
   const createdAt = new Date();
   const updatedAt = new Date();
-  const account = new AccountEntity({
+  const account = AccountEntity.create({
     id, userName, email, password, isActive, createdAt, updatedAt
   });
 
@@ -22,7 +22,7 @@ export const mockCreateAccount = (isActive = true): AccountEntity => {
   const userName = UserName.create('Valid Name');
   const email = Email.create('valid@email.com');
   const password = Password.create('#Valid123#');
-  const account = new AccountEntity({
+  const account = AccountEntity.create({
     userName, email, password, isActive
   });
 

@@ -21,7 +21,7 @@ export class SignUpUseCase implements UseCase<SignUpInputDto, SignUpOutputDto> {
       throw new DuplicatedEmailError(email.getValue());
     }
 
-    const account = new AccountEntity({
+    const account = AccountEntity.create({
       userName,
       email,
       password,

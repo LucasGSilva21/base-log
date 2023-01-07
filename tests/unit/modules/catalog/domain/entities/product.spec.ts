@@ -24,7 +24,7 @@ const makeSut = (): SutTypes => {
   const isActive = true;
   const createdAt = new Date();
   const updatedAt = new Date();
-  const sut = new ProductEntity({
+  const sut = ProductEntity.create({
     id, productName, priceInCents, amount, isActive, createdAt, updatedAt
   });
 

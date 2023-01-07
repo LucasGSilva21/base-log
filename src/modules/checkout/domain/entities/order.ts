@@ -40,7 +40,7 @@ export class OrderEntity extends BaseEntity implements AggregateRoot<OrderPrimit
   private _amount: Amount;
   private _transaction: TransactionEntity;
 
-  constructor(props: OrderProps) {
+  private constructor(props: OrderProps) {
     super(
       props.id,
       props.createdAt,
@@ -51,6 +51,10 @@ export class OrderEntity extends BaseEntity implements AggregateRoot<OrderPrimit
     this._product = props.product;
     this._amount = props.amount;
     this._transaction = props.transaction;
+  }
+
+  static create(props: OrderProps): OrderEntity {
+    return new OrderEntity(props);
   }
 
   get totalInCents(): TotalInCents {

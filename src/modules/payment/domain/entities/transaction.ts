@@ -33,7 +33,7 @@ export class TransactionEntity extends BaseEntity implements AggregateRoot<Trans
   private _totalInCents: TotalInCents;
   private _status: TransactionStatus;
 
-  constructor(props: TransactionProps) {
+  private constructor(props: TransactionProps) {
     super(
       props.id,
       props.createdAt,
@@ -42,6 +42,10 @@ export class TransactionEntity extends BaseEntity implements AggregateRoot<Trans
     this._orderId = props.orderId;
     this._totalInCents = props.totalInCents;
     this._status = props.status;
+  }
+
+  static create(props: TransactionProps): TransactionEntity {
+    return new TransactionEntity(props);
   }
 
   get orderId(): Id {
