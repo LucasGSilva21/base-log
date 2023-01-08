@@ -4,7 +4,7 @@ import {
   UpdateTransactionStatusInputDto
 } from '@payment/application/dtos';
 import { ProcessPaymentController, UpdateTransactionStatusController } from '@payment/presentation/controllers';
-import { PaymentFacadeInterface } from '@payment/framework/facade/payment-facade-interface';
+import { PaymentFacadeInterface } from '@payment/framework/facade';
 import { OutputError } from '@shared/presentation/protocols';
 
 export class PaymentFacade implements PaymentFacadeInterface {
