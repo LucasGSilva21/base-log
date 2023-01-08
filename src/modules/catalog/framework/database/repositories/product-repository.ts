@@ -60,4 +60,14 @@ export class DynamodbProductRepository implements ProductRepository {
 
     return null;
   }
+
+  async update (data: ProductEntity): Promise<void> {
+    await ProductModel.update({
+      id: data.id.getValue(),
+      productName: data.productName.getValue(),
+      priceInCents: data.priceInCents.getValue(),
+      amount: data.amount.getValue(),
+      isActive: data.isActive
+    });
+  }
 }
