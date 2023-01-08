@@ -5,11 +5,16 @@ import {
   IsString,
   IsNumber,
   IsBoolean,
+  IsNotEmpty,
   IsOptional,
   validate as validator
 } from 'class-validator';
 
 class UpdateProductValidationModel {
+  @IsString()
+  @IsNotEmpty()
+    productId: string;
+
   @IsString()
   @IsOptional()
     productName: string;
@@ -31,6 +36,7 @@ export class UpdateProductValidation implements Validation<UpdateProductInputDto
   async validate (input: UpdateProductInputDto): Promise<void> {
     const updateProductValidate = new UpdateProductValidationModel();
 
+    updateProductValidate.productId = input.productId;
     updateProductValidate.productName = input.productName;
     updateProductValidate.priceInCents = input.priceInCents;
     updateProductValidate.amount = input.amount;
