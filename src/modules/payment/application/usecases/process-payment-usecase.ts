@@ -29,6 +29,9 @@ export class ProcessPaymentUseCase implements UseCase<ProcessPaymentInputDto, Pr
       transactionId: transaction.id.getValue()
     });
 
-    return { paymentLink };
+    return {
+      paymentLink,
+      transaction: transaction.mapperToPrimitives()
+    };
   }
 }
