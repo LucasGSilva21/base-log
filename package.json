@@ -45,6 +45,7 @@
     "@shared": ".build/src/shared",
     "@authentication": ".build/src/modules/authentication",
     "@catalog": ".build/src/modules/catalog",
+    "@checkout": ".build/src/modules/checkout",
     "@payment": ".build/src/modules/payment"
   }
 }
