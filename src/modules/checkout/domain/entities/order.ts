@@ -17,7 +17,7 @@ export interface OrderProps {
   status: OrderStatus
   product: ProductEntity
   amount: Amount
-  transaction: TransactionEntity
+  transaction?: TransactionEntity
   createdAt?: Date
   updatedAt?: Date
 }
@@ -28,7 +28,7 @@ export interface OrderPrimitivesProps {
   status: OrderStatus
   product: ProductPrimitivesProps
   amount: number
-  transaction: TransactionPrimitivesProps
+  transaction?: TransactionPrimitivesProps
   createdAt: Date
   updatedAt: Date
 }
@@ -38,7 +38,7 @@ export class OrderEntity extends BaseEntity implements AggregateRoot<OrderPrimit
   private _status: OrderStatus;
   private _product: ProductEntity;
   private _amount: Amount;
-  private _transaction: TransactionEntity;
+  private _transaction?: TransactionEntity;
 
   private constructor(props: OrderProps) {
     super(
