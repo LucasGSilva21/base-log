@@ -1,9 +1,6 @@
 import { UseCase } from '@shared/application/protocols';
 import { CheckStockInputDto, CheckStockOutputDto } from '@catalog/application/dtos';
-import {
-  Validation,
-  OutputError
-} from '@shared/presentation/protocols';
+import { Validation } from '@shared/presentation/protocols';
 
 export class CheckStockController {
   constructor (
@@ -11,15 +8,11 @@ export class CheckStockController {
     private readonly validation: Validation<CheckStockInputDto>
   ) {}
 
-  async handler (input: CheckStockInputDto): Promise<CheckStockOutputDto | OutputError> {
-    try {
-      await this.validation.validate(input);
+  async handler (input: CheckStockInputDto): Promise<CheckStockOutputDto> {
+    await this.validation.validate(input);
 
-      const account = await this.checkStockUseCase.exec(input);
+    const account = await this.checkStockUseCase.exec(input);
 
-      return account;
-    } catch (error) {
-      return error as OutputError;
-    }
+    return account;
   }
 }

@@ -11,7 +11,6 @@ import {
   UpdateProductController
 } from '@catalog/presentation/controllers';
 import { CatalogFacadeInterface } from '@catalog/framework/facade';
-import { OutputError } from '@shared/presentation/protocols';
 
 export class CatalogFacade implements CatalogFacadeInterface {
   constructor (
@@ -20,15 +19,15 @@ export class CatalogFacade implements CatalogFacadeInterface {
     private readonly updateProductController: UpdateProductController
   ) {}
 
-  async checkStock(input: CheckStockInputDto): Promise <CheckStockOutputDto | OutputError> {
+  async checkStock(input: CheckStockInputDto): Promise <CheckStockOutputDto> {
     return this.checkStockController.handler(input);
   }
 
-  async findProductById(input: FindProductByIdInputDto): Promise<FindProductByIdOutputDto | OutputError> {
+  async findProductById(input: FindProductByIdInputDto): Promise<FindProductByIdOutputDto> {
     return this.findProductByIdController.handler(input);
   }
 
-  async updateProduct(input: UpdateProductInputDto): Promise<void | OutputError> {
+  async updateProduct(input: UpdateProductInputDto): Promise<void> {
     return this.updateProductController.handler(input);
   }
 }

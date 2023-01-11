@@ -1,9 +1,6 @@
 import { UseCase } from '@shared/application/protocols';
 import { UpdateProductInputDto } from '@catalog/application/dtos';
-import {
-  Validation,
-  OutputError
-} from '@shared/presentation/protocols';
+import { Validation } from '@shared/presentation/protocols';
 
 export class UpdateProductController {
   constructor (
@@ -11,13 +8,9 @@ export class UpdateProductController {
     private readonly validation: Validation<UpdateProductInputDto>
   ) {}
 
-  async handler (input: UpdateProductInputDto): Promise<void | OutputError> {
-    try {
-      await this.validation.validate(input);
+  async handler (input: UpdateProductInputDto): Promise<void> {
+    await this.validation.validate(input);
 
-      await this.updateProductUseCase.exec(input);
-    } catch (error) {
-      return (error as OutputError);
-    }
+    await this.updateProductUseCase.exec(input);
   }
 }
