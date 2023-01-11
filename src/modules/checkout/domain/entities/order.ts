@@ -1,8 +1,8 @@
 import { BaseEntity } from '@shared/domain/utils/base-entity';
 import { AggregateRoot } from '@shared/domain/protocols';
 import { Id, Amount, TotalInCents } from '@shared/domain/value-objects';
-import { ProductEntity, ProductPrimitivesProps } from '@catalog/domain/entities';
-import { TransactionEntity, TransactionPrimitivesProps } from '@payment/domain/entities';
+import { ProductPrimitivesProps } from '@catalog/domain/entities';
+import { TransactionPrimitivesProps } from '@payment/domain/entities';
 
 export enum OrderStatus {
   PENDING = 1,
@@ -15,9 +15,9 @@ export interface OrderProps {
   id?: Id
   totalInCents: TotalInCents
   status: OrderStatus
-  product: ProductEntity
+  product: ProductPrimitivesProps
   amount: Amount
-  transaction?: TransactionEntity
+  transaction?: TransactionPrimitivesProps
   createdAt?: Date
   updatedAt?: Date
 }
@@ -36,9 +36,9 @@ export interface OrderPrimitivesProps {
 export class OrderEntity extends BaseEntity implements AggregateRoot<OrderPrimitivesProps> {
   private _totalInCents: TotalInCents;
   private _status: OrderStatus;
-  private _product: ProductEntity;
+  private _product: ProductPrimitivesProps;
   private _amount: Amount;
-  private _transaction?: TransactionEntity;
+  private _transaction?: TransactionPrimitivesProps;
 
   private constructor(props: OrderProps) {
     super(
@@ -65,7 +65,7 @@ export class OrderEntity extends BaseEntity implements AggregateRoot<OrderPrimit
     return this._status;
   }
 
-  get product(): ProductEntity {
+  get product(): ProductPrimitivesProps {
     return this._product;
   }
 
@@ -73,7 +73,7 @@ export class OrderEntity extends BaseEntity implements AggregateRoot<OrderPrimit
     return this._amount;
   }
 
-  get transaction(): TransactionEntity {
+  get transaction(): TransactionPrimitivesProps {
     return this._transaction;
   }
 
@@ -82,9 +82,9 @@ export class OrderEntity extends BaseEntity implements AggregateRoot<OrderPrimit
       id: this.id.getValue(),
       totalInCents: this.totalInCents.getValue(),
       status: this.status,
-      product: this._product.mapperToPrimitives(),
+      product: this._product,
       amount: this.amount.getValue(),
-      transaction: this._transaction.mapperToPrimitives(),
+      transaction: this._transaction,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     };
