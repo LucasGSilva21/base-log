@@ -1,4 +1,3 @@
-import { OrderStatus } from '@checkout/domain/entities';
 import { PlaceOrderInputDto } from '@checkout/application/dtos';
 import { Validation } from '@shared/presentation/protocols';
 import { InvalidParameterError } from '@shared/presentation/errors';
@@ -6,7 +5,6 @@ import {
   IsString,
   IsNumber,
   IsPositive,
-  IsEnum,
   IsNotEmpty,
   validate as validator
 } from 'class-validator';
@@ -15,10 +13,6 @@ class PlaceOrderValidationModel {
   @IsString()
   @IsNotEmpty()
     productId: string;
-
-  @IsEnum(OrderStatus)
-  @IsNotEmpty()
-    status: OrderStatus;
 
   @IsNumber()
   @IsPositive()
@@ -36,7 +30,6 @@ export class PlaceOrderValidation implements Validation<PlaceOrderInputDto> {
     const placeOrderValidate = new PlaceOrderValidationModel();
 
     placeOrderValidate.productId = input.productId;
-    placeOrderValidate.status = input.status;
     placeOrderValidate.totalInCents = input.totalInCents;
     placeOrderValidate.amount = input.amount;
 
