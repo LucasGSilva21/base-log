@@ -23,7 +23,13 @@ export class PlaceOrderUseCase implements UseCase<PlaceOrderInputDto, PlaceOrder
     const order = OrderEntity.create({
       totalInCents,
       status: OrderStatus.PENDING,
-      product,
+      product: {
+        id: product.id,
+        productName: product.productName,
+        priceInCents: product.priceInCents,
+        amount: product.amount,
+        isActive: product.isActive
+      },
       amount
     });
 
