@@ -16,3 +16,7 @@ resource "aws_ssm_parameter" "baselog_dynamodb_products_table" {
   type  = "String"
   value = aws_dynamodb_table.baselog_products.name
 }
+
+output "baselog_products" {
+  value = aws_dynamodb_table.baselog_products
+}

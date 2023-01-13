@@ -35,3 +35,7 @@ resource "aws_ssm_parameter" "baselog_order_id_index" {
   type = "String"
   value = "${var.environment}-order-id-index"
 }
+
+output "baselog_transactions" {
+  value = aws_dynamodb_table.baselog_transactions
+}

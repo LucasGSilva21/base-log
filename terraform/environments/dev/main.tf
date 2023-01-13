@@ -20,8 +20,10 @@ module "payment" {
 }
 
 module "checkout" {
-  source         = "../../infra/checkout"
-  environment    = var.environment
-  write_capacity = 1
-  read_capacity  = 1
+  source               = "../../infra/checkout"
+  environment          = var.environment
+  write_capacity       = 1
+  read_capacity        = 1
+  baselog_products     = module.catalog.baselog_products
+  baselog_transactions = module.payment.baselog_transactions
 }
