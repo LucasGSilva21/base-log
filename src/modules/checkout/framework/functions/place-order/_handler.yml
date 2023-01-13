@@ -1,0 +1,11 @@
+place-order:
+  role: ${ssm:baselog-${self:custom.stage}-place-order-iam-role}
+  handler: ${self:custom.funcDir}/checkout/framework/functions/place-order/place-order.handler
+  environment:
+    DYNAMODB_ORDERS: ${ssm:baselog-${self:custom.stage}-dynamodb-orders-table}
+    DYNAMODB_PRODUCTS: ${ssm:baselog-${self:custom.stage}-dynamodb-products-table}
+    DYNAMODB_TRANSACTIONS: ${ssm:baselog-${self:custom.stage}-dynamodb-transactions-table}
+  events:
+    - http:
+        path: /checkout/order
+        method: POST

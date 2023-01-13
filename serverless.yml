@@ -20,3 +20,4 @@ functions:
   - ${file(${self:custom.funcDir}/authentication/framework/functions/sign-up/_handler.yml)}
   - ${file(${self:custom.funcDir}/catalog/framework/functions/create-product/_handler.yml)}
   - ${file(${self:custom.funcDir}/catalog/framework/functions/list-products/_handler.yml)}
+  - ${file(${self:custom.funcDir}/checkout/framework/functions/place-order/_handler.yml)}
