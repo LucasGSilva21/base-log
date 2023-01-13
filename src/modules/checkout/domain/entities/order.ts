@@ -15,9 +15,9 @@ export interface OrderProps {
   id?: Id
   totalInCents: TotalInCents
   status: OrderStatus
-  product: ProductPrimitivesProps
+  product: Partial<ProductPrimitivesProps>
   amount: Amount
-  transaction?: TransactionPrimitivesProps
+  transaction?: Partial<TransactionPrimitivesProps>
   createdAt?: Date
   updatedAt?: Date
 }
@@ -26,9 +26,9 @@ export interface OrderPrimitivesProps {
   id: string
   totalInCents: number
   status: OrderStatus
-  product: ProductPrimitivesProps
+  product: Partial<ProductPrimitivesProps>
   amount: number
-  transaction?: TransactionPrimitivesProps
+  transaction?: Partial<TransactionPrimitivesProps>
   createdAt: Date
   updatedAt: Date
 }
@@ -36,9 +36,9 @@ export interface OrderPrimitivesProps {
 export class OrderEntity extends BaseEntity implements AggregateRoot<OrderPrimitivesProps> {
   private _totalInCents: TotalInCents;
   private _status: OrderStatus;
-  private _product: ProductPrimitivesProps;
+  private _product: Partial<ProductPrimitivesProps>;
   private _amount: Amount;
-  private _transaction?: TransactionPrimitivesProps;
+  private _transaction?: Partial<TransactionPrimitivesProps>;
 
   private constructor(props: OrderProps) {
     super(
@@ -65,7 +65,7 @@ export class OrderEntity extends BaseEntity implements AggregateRoot<OrderPrimit
     return this._status;
   }
 
-  get product(): ProductPrimitivesProps {
+  get product(): Partial<ProductPrimitivesProps> {
     return this._product;
   }
 
@@ -73,7 +73,7 @@ export class OrderEntity extends BaseEntity implements AggregateRoot<OrderPrimit
     return this._amount;
   }
 
-  get transaction(): TransactionPrimitivesProps {
+  get transaction(): Partial<TransactionPrimitivesProps> {
     return this._transaction;
   }
 
