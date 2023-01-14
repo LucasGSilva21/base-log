@@ -8,7 +8,8 @@ export enum OrderStatus {
   PENDING = 1,
   APPROVED = 2,
   RECUSED = 3,
-  CANCELED = 4
+  CANCELED = 4,
+  FAILURED = 5
 }
 
 export interface OrderProps {
@@ -63,6 +64,10 @@ export class OrderEntity extends BaseEntity implements AggregateRoot<OrderPrimit
 
   get status(): OrderStatus {
     return this._status;
+  }
+
+  set status(status: OrderStatus) {
+    this._status = status;
   }
 
   get product(): Partial<ProductPrimitivesProps> {

@@ -7,7 +7,9 @@ export enum TransactionStatus {
   PENDING = 1,
   APPROVED = 2,
   RECUSED = 3,
-  CANCELED = 4
+  CANCELED = 4,
+  PENDING_CHARGEBACK = 5,
+  CHARGED_BACK = 6
 }
 
 export interface TransactionProps {
