@@ -49,7 +49,7 @@ export class PlaceOrderUseCase implements UseCase<PlaceOrderInputDto, PlaceOrder
     });
 
     return {
-      order: orderUpdated,
+      order: orderUpdated.mapperToPrimitives(),
       paymentLink
     };
   }

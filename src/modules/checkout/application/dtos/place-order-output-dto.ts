@@ -1,6 +1,6 @@
-import { OrderEntity } from '@checkout/domain/entities';
+import { OrderPrimitivesProps } from '@checkout/domain/entities';
 
 export interface PlaceOrderOutputDto {
-  order: OrderEntity
+  order: OrderPrimitivesProps
   paymentLink: string
 }
