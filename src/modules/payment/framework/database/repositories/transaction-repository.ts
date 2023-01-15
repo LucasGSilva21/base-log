@@ -1,5 +1,5 @@
 import { Id, TotalInCents } from '@shared/domain/value-objects';
-import { TransactionEntity } from '@payment/domain/entities';
+import { TransactionEntity, TransactionStatus } from '@payment/domain/entities';
 import { TransactionRepository } from '@payment/application/repositories';
 import { TransactionModel } from '@payment/framework/database/models';
 
@@ -44,7 +44,7 @@ export class DynamodbTransactionRepository implements TransactionRepository {
       id: data.id.getValue(),
       orderId: data.orderId.getValue(),
       totalInCents: data.totalInCents.getValue(),
-      status: data.status
+      status: TransactionStatus[data.status] as any
     });
   }
 }

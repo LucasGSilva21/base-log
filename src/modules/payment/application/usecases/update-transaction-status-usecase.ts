@@ -1,6 +1,7 @@
 import { UseCase } from '@shared/application/protocols';
 import { Id } from '@shared/domain/value-objects';
 import { NotFoundEntityError } from '@shared/application/errors';
+import { TransactionEntity } from '@payment/domain/entities';
 import { TransactionRepository } from '@payment/application/repositories';
 import { UpdateTransactionStatusInputDto } from '@payment/application/dtos';
 
@@ -18,8 +19,13 @@ export class UpdateTransactionStatusUseCase implements UseCase<UpdateTransaction
       throw new NotFoundEntityError(id.getValue());
     }
 
-    transaction.status = data.status;
+    const transactionUpdated = TransactionEntity.create({
+      id: transaction.id,
+      orderId: transaction.orderId,
+      totalInCents: transaction.totalInCents,
+      status: data.status
+    });
 
-    await this.transactionRepository.update(transaction);
+    await this.transactionRepository.update(transactionUpdated);
   }
 }

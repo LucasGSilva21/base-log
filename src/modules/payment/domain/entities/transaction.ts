@@ -62,10 +62,6 @@ export class TransactionEntity extends BaseEntity implements AggregateRoot<Trans
     return this._status;
   }
 
-  set status(status: TransactionStatus) {
-    this._status = status;
-  }
-
   mapperToPrimitives(): TransactionPrimitivesProps {
     return {
       id: this.id.getValue(),

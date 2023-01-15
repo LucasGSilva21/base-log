@@ -66,10 +66,6 @@ export class OrderEntity extends BaseEntity implements AggregateRoot<OrderPrimit
     return this._status;
   }
 
-  set status(status: OrderStatus) {
-    this._status = status;
-  }
-
   get product(): Partial<ProductPrimitivesProps> {
     return this._product;
   }

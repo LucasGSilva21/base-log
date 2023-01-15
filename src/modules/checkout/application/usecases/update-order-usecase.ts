@@ -1,6 +1,6 @@
 import { UseCase } from '@shared/application/protocols';
 import { Id } from '@shared/domain/value-objects';
-import { OrderStatus } from '@checkout/domain/entities';
+import { OrderEntity, OrderStatus } from '@checkout/domain/entities';
 import { UpdateOrderInputDto } from '@checkout/application/dtos';
 import { OrderRepository } from '@checkout/application/repositories';
 import { UnavailableStockError } from '@checkout/application/errors';
@@ -20,6 +20,8 @@ export class UpdateOrderUseCase implements UseCase<UpdateOrderInputDto, void> {
 
     const order = await this.orderRepository.findById(orderId);
 
+    // TODO not found order
+
     const checkStock = await this.catalogFacade.checkStock({
       productId: order.product.id,
       amount: order.product.amount
@@ -31,20 +33,60 @@ export class UpdateOrderUseCase implements UseCase<UpdateOrderInputDto, void> {
         status: TransactionStatus.PENDING_CHARGEBACK
       });
 
-      order.status = OrderStatus.FAILURED;
-      await this.orderRepository.update(order);
+      const orderUpdated = OrderEntity.create({
+        id: order.id,
+        totalInCents: order.totalInCents,
+        status: OrderStatus.FAILURED,
+        product: {
+          id: order.product.id,
+          productName: order.product.productName,
+          priceInCents: order.product.priceInCents,
+          amount: order.product.amount,
+          isActive: order.product.isActive
+        },
+        amount: order.amount,
+        transaction: {
+          id: order.transaction.id,
+          orderId: order.id.getValue(),
+          totalInCents: order.transaction.totalInCents,
+          status: TransactionStatus.PENDING_CHARGEBACK
+        }
+      });
+
+      await this.orderRepository.update(orderUpdated);
 
       // TODO send notification to admin
 
       throw new UnavailableStockError(checkStock.availableQuantity);
     }
 
+    // TODO remove amount product
+
     await this.paymentFacade.updateTransactionStatus({
       transactionId: order.transaction.id,
       status: data.transactionStatus
     });
 
-    order.status = data.orderStatus;
-    await this.orderRepository.update(order);
+    const orderUpdated = OrderEntity.create({
+      id: order.id,
+      totalInCents: order.totalInCents,
+      status: data.orderStatus,
+      product: {
+        id: order.product.id,
+        productName: order.product.productName,
+        priceInCents: order.product.priceInCents,
+        amount: order.product.amount,
+        isActive: order.product.isActive
+      },
+      amount: order.amount,
+      transaction: {
+        id: order.transaction.id,
+        orderId: order.id.getValue(),
+        totalInCents: order.transaction.totalInCents,
+        status: data.transactionStatus
+      }
+    });
+
+    await this.orderRepository.update(orderUpdated);
   }
 }
