@@ -41,12 +41,26 @@ export class PlaceOrderUseCase implements UseCase<PlaceOrderInputDto, PlaceOrder
     });
 
     const orderUpdated = OrderEntity.create({
+      id: orderCreated.id,
       totalInCents,
       status: OrderStatus.PENDING,
-      product,
+      product: {
+        id: product.id,
+        productName: product.productName,
+        priceInCents: product.priceInCents,
+        amount: product.amount,
+        isActive: product.isActive
+      },
       amount,
-      transaction
+      transaction: {
+        id: transaction.id,
+        orderId: orderCreated.id.getValue(),
+        totalInCents: transaction.totalInCents,
+        status: transaction.status
+      }
     });
+
+    await this.orderRepository.update(orderUpdated);
 
     return {
       order: orderUpdated.mapperToPrimitives(),
