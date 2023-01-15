@@ -26,7 +26,6 @@ export class PlaceOrderController implements Controller<PlaceOrderInputDto, Plac
 
       return created(account);
     } catch (error) {
-      console.log('@@@ERROR@@@', error);
       return makeOutputError(error as ErrorBase);
     }
   }
