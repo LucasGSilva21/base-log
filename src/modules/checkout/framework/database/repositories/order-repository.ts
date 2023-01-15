@@ -1,5 +1,5 @@
 import { Id, TotalInCents, Amount } from '@shared/domain/value-objects';
-import { OrderEntity, OrderStatus } from '@checkout/domain/entities';
+import { OrderEntity } from '@checkout/domain/entities';
 import { OrderRepository } from '@checkout/application/repositories';
 import { OrderModel } from '@checkout/framework/database/models';
 
@@ -27,7 +27,7 @@ export class DynamodbOrderRepository implements OrderRepository {
     const order = await OrderModel.create({
       id: data.id.getValue(),
       totalInCents: data.totalInCents.getValue(),
-      status: data.status,
+      status: `${data.status}` as any,
       amount: data.amount.getValue(),
       product: data.product,
       transaction: data.transaction
@@ -49,7 +49,7 @@ export class DynamodbOrderRepository implements OrderRepository {
     await OrderModel.update({
       id: data.id.getValue(),
       totalInCents: data.totalInCents.getValue(),
-      status: OrderStatus[data.status] as any,
+      status: `${data.status}` as any,
       amount: data.amount.getValue(),
       product: data.product,
       transaction: data.transaction

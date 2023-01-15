@@ -14,7 +14,7 @@ const schemaDefinition: SchemaDefinition = {
     type: Number,
   },
   status: {
-    type: Number
+    type: String
   },
   amount: {
     type: Number

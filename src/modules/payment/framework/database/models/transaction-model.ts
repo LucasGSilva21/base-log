@@ -17,7 +17,7 @@ const schemaDefinition: SchemaDefinition = {
     type: Number,
   },
   status: {
-    type: Number
+    type: String
   },
   isActive: {
     type: Boolean
