@@ -9,3 +9,4 @@ place-order:
     - http:
         path: /checkout/order
         method: POST
+        authorizer: customer-authorizer

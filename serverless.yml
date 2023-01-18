@@ -14,8 +14,10 @@ plugins:
 custom:
   stage: ${opt:stage, self:provider.stage}
   funcDir: src/modules
+  sharedDir: src/shared
 
 functions:
+  - ${file(${self:custom.sharedDir}/framework/authorizers/_handler.yml)}
   - ${file(${self:custom.funcDir}/authentication/framework/functions/sign-in/_handler.yml)}
   - ${file(${self:custom.funcDir}/authentication/framework/functions/sign-up/_handler.yml)}
   - ${file(${self:custom.funcDir}/catalog/framework/functions/create-product/_handler.yml)}
