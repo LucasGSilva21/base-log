@@ -22,6 +22,9 @@ const schemaDefinition: SchemaDefinition = {
   password: {
     type: String
   },
+  isAdmin: {
+    type: Boolean
+  },
   isActive: {
     type: Boolean
   }

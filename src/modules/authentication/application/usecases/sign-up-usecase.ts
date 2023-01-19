@@ -25,7 +25,8 @@ export class SignUpUseCase implements UseCase<SignUpInputDto, SignUpOutputDto> {
       userName,
       email,
       password,
-      isActive: true
+      isActive: true,
+      isAdmin: false
     });
 
     const accountCreated = await this.accountRepository.create(account);

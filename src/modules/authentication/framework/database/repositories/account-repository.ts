@@ -19,6 +19,7 @@ export class DynamodbAccountRepository implements AccountRepository {
       userName: UserName.create(account.userName),
       email: Email.create(account.email),
       password: Password.create(account.password, true),
+      isAdmin: account.isAdmin,
       isActive: account.isActive,
       createdAt: account.createdAt,
       updatedAt: account.updatedAt
@@ -40,6 +41,7 @@ export class DynamodbAccountRepository implements AccountRepository {
       userName: UserName.create(account[0].userName),
       email: Email.create(account[0].email),
       password: Password.create(account[0].password, true),
+      isAdmin: account[0].isAdmin,
       isActive: account[0].isActive,
       createdAt: account[0].createdAt,
       updatedAt: account[0].updatedAt

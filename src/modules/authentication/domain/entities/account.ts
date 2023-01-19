@@ -8,6 +8,7 @@ export interface AccountProps {
   userName: UserName
   email: Email
   password: Password
+  isAdmin?: boolean
   isActive?: boolean
   createdAt?: Date
   updatedAt?: Date
@@ -18,6 +19,7 @@ export interface AccountPrimitivesProps {
   userName: string
   email: string
   password?: string
+  isAdmin: boolean
   isActive: boolean
   createdAt: Date
   updatedAt: Date
@@ -27,6 +29,7 @@ export class AccountEntity extends BaseEntity implements AggregateRoot<AccountPr
   private _userName: UserName;
   private _email: Email;
   private _password: Password;
+  private _isAdmin: boolean;
   private _isActive: boolean;
 
   private constructor(props: AccountProps) {
@@ -38,7 +41,8 @@ export class AccountEntity extends BaseEntity implements AggregateRoot<AccountPr
     this._userName = props.userName;
     this._email = props.email;
     this._password = props.password;
-    this._isActive = props.isActive ?? false;
+    this._isAdmin = props.isAdmin || false;
+    this._isActive = props.isActive || false;
   }
 
   static create(props: AccountProps): AccountEntity {
@@ -57,6 +61,10 @@ export class AccountEntity extends BaseEntity implements AggregateRoot<AccountPr
     return this._password;
   }
 
+  get isAdmin(): boolean {
+    return this._isAdmin;
+  }
+
   get isActive(): boolean {
     return this._isActive;
   }
@@ -70,6 +78,7 @@ export class AccountEntity extends BaseEntity implements AggregateRoot<AccountPr
       id: this.id.getValue(),
       userName: this.userName.getValue(),
       email: this.email.getValue(),
+      isAdmin: this.isAdmin,
       isActive: this.isActive,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
