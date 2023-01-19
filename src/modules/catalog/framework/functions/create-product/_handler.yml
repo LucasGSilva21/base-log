@@ -7,3 +7,4 @@ create-product:
     - http:
         path: /catalog/product
         method: POST
+        authorizer: admin-authorizer
