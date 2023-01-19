@@ -2,3 +2,8 @@ customer-authorizer:
   handler: ${self:custom.sharedDir}/framework/authorizers/customer-authorizer.authorizer
   environment:
     JWT_SECRET: ${ssm:baselog-${self:custom.stage}-jwt-secret}
+
+admin-authorizer:
+  handler: ${self:custom.sharedDir}/framework/authorizers/admin-authorizer.authorizer
+  environment:
+    JWT_SECRET: ${ssm:baselog-${self:custom.stage}-jwt-secret}
