@@ -23,6 +23,9 @@ export class SignInUseCase implements UseCase<SignInInputDto, SignInOutputDto> {
       throw new InvalidCredentialsError();
     }
 
-    return { accessToken: encrypt(accountExists.id.getValue()) };
+    return { accessToken: encrypt({
+      id: accountExists.id.getValue(),
+      isAdmin: accountExists.isAdmin
+    }) };
   }
 }

@@ -1,6 +1,14 @@
 import jwt from 'jsonwebtoken';
 
-export const encrypt = (value: string): string => {
-  const accessToken = jwt.sign({ id: value }, process.env.JWT_SECRET);
+export interface EncryptInput {
+  id: string,
+  isAdmin: boolean
+}
+
+export const encrypt = (input: EncryptInput): string => {
+  const accessToken = jwt.sign({
+    id: input.id,
+    isAdmin: input.isAdmin || false
+  }, process.env.JWT_SECRET);
   return accessToken;
 };
