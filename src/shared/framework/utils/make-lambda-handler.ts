@@ -6,8 +6,12 @@ export const normalizeEventData = (event: APIGatewayEvent) => {
   const body = JSON.parse(event.body);
   const params = event.pathParameters;
   const query = event.queryStringParameters;
+  const accountId = event.requestContext?.authorizer?.id;
   return {
-    body: { ...body },
+    body: {
+      accountId,
+      ...body
+    },
     params: { ...params },
     query: { ...query}
   };
