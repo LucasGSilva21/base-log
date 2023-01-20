@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { generatePolicy } from '@shared/framework/authorizers/generate-policy';
+import { generatePolicy } from './generate-policy';
 
 export const authorizer = function (
   event: any,
