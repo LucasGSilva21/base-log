@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import { generatePolicy } from '@shared/framework/authorizers/generate-policy';
 
 export const authorizer = function (
   event: any,
@@ -14,40 +15,10 @@ export const authorizer = function (
 
     const [, token] = authToken.split(' ');
 
-    const user = jwt.verify(token, process.env.JWT_SECRET);
+    const account = jwt.verify(token, process.env.JWT_SECRET);
 
-    callback(null, generatePolicy('user', 'Allow', event.methodArn, user));
-  } catch (e) {
-    callback(null, generatePolicy('user', 'Deny', event.methodArn, undefined));
+    callback(null, generatePolicy('account', 'Allow', event.methodArn, account));
+  } catch (error) {
+    callback(null, generatePolicy('account', 'Deny', event.methodArn, undefined));
   }
-};
-
-const generatePolicy = function (
-  principalId: any,
-  effect: any,
-  resource: any,
-  user: any
-) {
-  const authResponse: any = {};
-  authResponse.principalId = principalId;
-
-  if (effect && resource) {
-    const policyDocument: any = {};
-    policyDocument.Version = '2012-10-17';
-    policyDocument.Statement = [];
-
-    const statementOne: any = {};
-    statementOne.Action = 'execute-api:Invoke';
-    statementOne.Effect = effect;
-    statementOne.Resource = resource;
-
-    policyDocument.Statement[0] = statementOne;
-    authResponse.policyDocument = policyDocument;
-  }
-
-  if (user) {
-    authResponse.context = user;
-  }
-
-  return authResponse;
 };
