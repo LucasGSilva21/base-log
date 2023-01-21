@@ -14,6 +14,7 @@ export class DynamodbOrderRepository implements OrderRepository {
         status: order[0].status,
         amount: Amount.create(order[0].amount),
         product: order[0].product,
+        account: order[0].account,
         transaction: order[0].transaction,
         createdAt: order[0].createdAt,
         updatedAt: order[0].updatedAt
@@ -30,6 +31,7 @@ export class DynamodbOrderRepository implements OrderRepository {
       status: `${data.status}` as any,
       amount: data.amount.getValue(),
       product: data.product,
+      account: data.account,
       transaction: data.transaction
     });
 
@@ -39,6 +41,7 @@ export class DynamodbOrderRepository implements OrderRepository {
       status: order.status,
       amount: Amount.create(order.amount),
       product: data.product,
+      account: data.account,
       transaction: data.transaction,
       createdAt: order.createdAt,
       updatedAt: order.updatedAt
@@ -52,6 +55,7 @@ export class DynamodbOrderRepository implements OrderRepository {
       status: `${data.status}` as any,
       amount: data.amount.getValue(),
       product: data.product,
+      account: data.account,
       transaction: data.transaction
     });
   }

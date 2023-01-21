@@ -1,6 +1,7 @@
 import { BaseEntity } from '@shared/domain/utils/base-entity';
 import { AggregateRoot } from '@shared/domain/protocols';
 import { Id, Amount, TotalInCents } from '@shared/domain/value-objects';
+import { AccountPrimitivesProps } from '@authentication/domain/entities';
 import { ProductPrimitivesProps } from '@catalog/domain/entities';
 import { TransactionPrimitivesProps } from '@payment/domain/entities';
 
@@ -18,6 +19,7 @@ export interface OrderProps {
   status: OrderStatus
   product: Partial<ProductPrimitivesProps>
   amount: Amount
+  account: Partial<AccountPrimitivesProps>
   transaction?: Partial<TransactionPrimitivesProps>
   createdAt?: Date
   updatedAt?: Date
@@ -29,6 +31,7 @@ export interface OrderPrimitivesProps {
   status: OrderStatus
   product: Partial<ProductPrimitivesProps>
   amount: number
+  account: Partial<AccountPrimitivesProps>
   transaction?: Partial<TransactionPrimitivesProps>
   createdAt: Date
   updatedAt: Date
@@ -39,6 +42,7 @@ export class OrderEntity extends BaseEntity implements AggregateRoot<OrderPrimit
   private _status: OrderStatus;
   private _product: Partial<ProductPrimitivesProps>;
   private _amount: Amount;
+  private _account: Partial<AccountPrimitivesProps>;
   private _transaction?: Partial<TransactionPrimitivesProps>;
 
   private constructor(props: OrderProps) {
@@ -51,6 +55,7 @@ export class OrderEntity extends BaseEntity implements AggregateRoot<OrderPrimit
     this._status = props.status;
     this._product = props.product;
     this._amount = props.amount;
+    this._account = props.account;
     this._transaction = props.transaction;
   }
 
@@ -74,6 +79,10 @@ export class OrderEntity extends BaseEntity implements AggregateRoot<OrderPrimit
     return this._amount;
   }
 
+  get account(): Partial<AccountPrimitivesProps> {
+    return this._account;
+  }
+
   get transaction(): Partial<TransactionPrimitivesProps> {
     return this._transaction;
   }
@@ -83,9 +92,10 @@ export class OrderEntity extends BaseEntity implements AggregateRoot<OrderPrimit
       id: this.id.getValue(),
       totalInCents: this.totalInCents.getValue(),
       status: this.status,
-      product: this._product,
+      product: this.product,
       amount: this.amount.getValue(),
-      transaction: this._transaction,
+      account: this.account,
+      transaction: this.transaction,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     };

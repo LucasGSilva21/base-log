@@ -30,7 +30,10 @@ export class PlaceOrderUseCase implements UseCase<PlaceOrderInputDto, PlaceOrder
         amount: product.amount,
         isActive: product.isActive
       },
-      amount
+      amount,
+      account: {
+        id: data.accountId
+      }
     });
 
     const orderCreated = await this.orderRepository.create(order);
@@ -57,6 +60,9 @@ export class PlaceOrderUseCase implements UseCase<PlaceOrderInputDto, PlaceOrder
         orderId: orderCreated.id.getValue(),
         totalInCents: transaction.totalInCents,
         status: transaction.status
+      },
+      account: {
+        id: orderCreated.account.id
       }
     });
 

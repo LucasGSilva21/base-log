@@ -12,6 +12,10 @@ import {
 class PlaceOrderValidationModel {
   @IsString()
   @IsNotEmpty()
+    accountId: string;
+
+  @IsString()
+  @IsNotEmpty()
     productId: string;
 
   @IsNumber()
@@ -29,6 +33,7 @@ export class PlaceOrderValidation implements Validation<PlaceOrderInputDto> {
   async validate (input: PlaceOrderInputDto): Promise<void> {
     const placeOrderValidate = new PlaceOrderValidationModel();
 
+    placeOrderValidate.accountId = input.accountId;
     placeOrderValidate.productId = input.productId;
     placeOrderValidate.totalInCents = input.totalInCents;
     placeOrderValidate.amount = input.amount;

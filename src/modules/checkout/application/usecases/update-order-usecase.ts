@@ -45,6 +45,9 @@ export class UpdateOrderUseCase implements UseCase<UpdateOrderInputDto, void> {
           isActive: order.product.isActive
         },
         amount: order.amount,
+        account: {
+          id: order.account.id
+        },
         transaction: {
           id: order.transaction.id,
           orderId: order.id.getValue(),
@@ -79,6 +82,9 @@ export class UpdateOrderUseCase implements UseCase<UpdateOrderInputDto, void> {
         isActive: order.product.isActive
       },
       amount: order.amount,
+      account: {
+        id: order.account.id
+      },
       transaction: {
         id: order.transaction.id,
         orderId: order.id.getValue(),

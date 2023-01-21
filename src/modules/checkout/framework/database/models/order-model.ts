@@ -22,6 +22,9 @@ const schemaDefinition: SchemaDefinition = {
   product: {
     type: Object
   },
+  account: {
+    type: Object
+  },
   transaction: {
     type: Object,
     required: false
