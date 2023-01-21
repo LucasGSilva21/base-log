@@ -2,6 +2,7 @@ import { UseCase } from '@shared/application/protocols';
 import { TotalInCents, Amount } from '@shared/domain/value-objects';
 import { OrderEntity, OrderStatus } from '@checkout/domain/entities';
 import { PlaceOrderInputDto, PlaceOrderOutputDto } from '@checkout/application/dtos';
+import { UnavailableStockError } from '@checkout/application/errors';
 import { OrderRepository } from '@checkout/application/repositories';
 import { CatalogFacadeInterface } from '@catalog/framework/facade';
 import { PaymentFacadeInterface } from '@payment/framework/facade';
@@ -17,6 +18,17 @@ export class PlaceOrderUseCase implements UseCase<PlaceOrderInputDto, PlaceOrder
     const productId = data.productId;
     const totalInCents = TotalInCents.create(data.totalInCents);
     const amount = Amount.create(data.amount);
+
+    const checkStock = await this.catalogFacade.checkStock({
+      productId,
+      amount: amount.getValue()
+    });
+
+    if (!checkStock.isAvailable) {
+      // TODO send notification to admin
+
+      throw new UnavailableStockError(checkStock.availableQuantity);
+    }
 
     const { product } = await this.catalogFacade.findProductById({ productId });
 
