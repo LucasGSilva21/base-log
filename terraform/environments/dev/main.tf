@@ -27,3 +27,8 @@ module "checkout" {
   baselog_products     = module.catalog.baselog_products
   baselog_transactions = module.payment.baselog_transactions
 }
+
+module "notification" {
+  source         = "../../infra/notification"
+  environment    = var.environment
+}
