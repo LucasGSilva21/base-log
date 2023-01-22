@@ -200,6 +200,7 @@ module.exports = {
     '@authentication/(.*)': '<rootDir>/src/modules/authentication/$1',
     '@catalog/(.*)': '<rootDir>/src/modules/catalog/$1',
     '@checkout/(.*)': '<rootDir>/src/modules/checkout/$1',
+    '@notification/(.*)': '<rootDir>/src/modules/notification/$1',
     '@payment/(.*)': '<rootDir>/src/modules/payment/$1',
     '@tests/(.*)': '<rootDir>/tests/$1'
   }

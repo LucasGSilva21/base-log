@@ -33,6 +33,7 @@
       "@authentication/*": ["./src/modules/authentication/*"],
       "@catalog/*": ["./src/modules/catalog/*"],
       "@checkout/*": ["./src/modules/checkout/*"],
+      "@notification/*": ["./src/modules/notification/*"],
       "@payment/*": ["./src/modules/payment/*"],
       "@tests/*": ["./tests/*"]
     },

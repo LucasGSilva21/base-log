@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "aws-lambda": "^1.0.7",
+    "aws-sdk": "^2.1299.0",
     "bcrypt": "^5.0.1",
     "class-validator": "^0.13.2",
     "dynamoose": "^3.1.0",
@@ -46,6 +47,7 @@
     "@authentication": ".build/src/modules/authentication",
     "@catalog": ".build/src/modules/catalog",
     "@checkout": ".build/src/modules/checkout",
+    "@notification": ".build/src/modules/notification",
     "@payment": ".build/src/modules/payment"
   }
 }
