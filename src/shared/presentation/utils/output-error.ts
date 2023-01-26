@@ -24,6 +24,9 @@ export const makeOutputError = (error: ErrorBase): HttpResponse<OutputError> => 
   if (error.type === 'errors/authentication/invalidCredentials') {
     return badRequest(error);
   }
+  if (error.type === 'errors/checkout/unavailableStock') {
+    return badRequest(error);
+  }
 
   // Presentation Errors
   if (error.type === 'errors/common/invalidParameter') {

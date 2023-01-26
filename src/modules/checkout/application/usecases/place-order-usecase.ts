@@ -6,12 +6,14 @@ import { UnavailableStockError } from '@checkout/application/errors';
 import { OrderRepository } from '@checkout/application/repositories';
 import { CatalogFacadeInterface } from '@catalog/framework/facade';
 import { PaymentFacadeInterface } from '@payment/framework/facade';
+import { NotificationFacadeInterface } from '@notification/framework/facade';
 
 export class PlaceOrderUseCase implements UseCase<PlaceOrderInputDto, PlaceOrderOutputDto> {
   constructor (
     private readonly orderRepository: OrderRepository,
     private readonly catalogFacade: CatalogFacadeInterface,
-    private readonly paymentFacade: PaymentFacadeInterface
+    private readonly paymentFacade: PaymentFacadeInterface,
+    private readonly notificationFacade: NotificationFacadeInterface
   ) {}
 
   async exec (data: PlaceOrderInputDto): Promise<PlaceOrderOutputDto> {
@@ -25,7 +27,11 @@ export class PlaceOrderUseCase implements UseCase<PlaceOrderInputDto, PlaceOrder
     });
 
     if (!checkStock.isAvailable) {
-      // TODO send notification to admin
+      await this.notificationFacade.notifyUnavailableStock({
+        productId,
+        amount: amount.getValue(),
+        availableQuantity: checkStock.availableQuantity
+      });
 
       throw new UnavailableStockError(checkStock.availableQuantity);
     }
