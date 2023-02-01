@@ -72,7 +72,10 @@ export class UpdateOrderUseCase implements UseCase<UpdateOrderInputDto, void> {
       throw new UnavailableStockError(checkStock.availableQuantity);
     }
 
-    // TODO remove amount product
+    await this.catalogFacade.updateProduct({
+      productId: order.product.id,
+      amount: (checkStock.availableQuantity - order.product.amount)
+    });
 
     await this.paymentFacade.updateTransactionStatus({
       transactionId: order.transaction.id,
