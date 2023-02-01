@@ -1,5 +1,6 @@
 import { UseCase } from '@shared/application/protocols';
 import { Id } from '@shared/domain/value-objects';
+import { NotFoundEntityError } from '@shared/application/errors';
 import { OrderEntity, OrderStatus } from '@checkout/domain/entities';
 import { UpdateOrderInputDto } from '@checkout/application/dtos';
 import { OrderRepository } from '@checkout/application/repositories';
@@ -22,7 +23,9 @@ export class UpdateOrderUseCase implements UseCase<UpdateOrderInputDto, void> {
 
     const order = await this.orderRepository.findById(orderId);
 
-    // TODO not found order
+    if (!order) {
+      throw new NotFoundEntityError(orderId.getValue());
+    }
 
     const checkStock = await this.catalogFacade.checkStock({
       productId: order.product.id,
