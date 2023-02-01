@@ -106,5 +106,10 @@ export class UpdateOrderUseCase implements UseCase<UpdateOrderInputDto, void> {
     });
 
     await this.orderRepository.update(orderUpdated);
+
+    await this.notificationFacade.notifyPaymentStatus({
+      orderId: order.id.getValue(),
+      status: data.transactionStatus.toString()
+    });
   }
 }
