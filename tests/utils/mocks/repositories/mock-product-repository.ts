@@ -15,6 +15,10 @@ export const mockProductRepository = (): ProductRepository => {
     async findById (): Promise<ProductEntity> {
       return Promise.resolve(mockCreateProduct());
     }
+
+    async update (): Promise<void> {
+      Promise.resolve();
+    }
   }
 
   return new ProductRepositoryStub();
