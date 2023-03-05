@@ -21,11 +21,6 @@ class PlaceOrderValidationModel {
   @IsNumber()
   @IsPositive()
   @IsNotEmpty()
-    totalInCents: number;
-
-  @IsNumber()
-  @IsPositive()
-  @IsNotEmpty()
     amount: number;
 }
 
@@ -35,7 +30,6 @@ export class PlaceOrderValidation implements Validation<PlaceOrderInputDto> {
 
     placeOrderValidate.accountId = input.accountId;
     placeOrderValidate.productId = input.productId;
-    placeOrderValidate.totalInCents = input.totalInCents;
     placeOrderValidate.amount = input.amount;
 
     const errors = await validator(placeOrderValidate);

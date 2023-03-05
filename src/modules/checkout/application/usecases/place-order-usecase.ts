@@ -18,7 +18,6 @@ export class PlaceOrderUseCase implements UseCase<PlaceOrderInputDto, PlaceOrder
 
   async exec (data: PlaceOrderInputDto): Promise<PlaceOrderOutputDto> {
     const productId = data.productId;
-    const totalInCents = TotalInCents.create(data.totalInCents);
     const amount = Amount.create(data.amount);
 
     const checkStock = await this.catalogFacade.checkStock({
@@ -37,6 +36,8 @@ export class PlaceOrderUseCase implements UseCase<PlaceOrderInputDto, PlaceOrder
     }
 
     const { product } = await this.catalogFacade.findProductById({ productId });
+
+    const totalInCents = TotalInCents.create(product.priceInCents * data.amount);
 
     const order = OrderEntity.create({
       totalInCents,
