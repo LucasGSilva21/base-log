@@ -32,7 +32,7 @@ const makeSut = (): SutTypes => {
   };
 };
 
-describe('ListProductsUseCase', () => {
+describe('FindProductByIdUseCase', () => {
   beforeAll(() => {
     MockDate.set(new Date());
   });

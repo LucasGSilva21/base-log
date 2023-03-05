@@ -31,7 +31,7 @@ const makeSut = (): SutTypes => {
   };
 };
 
-describe('Product Entity', () => {
+describe('CreateProductUseCase', () => {
   beforeAll(() => {
     MockDate.set(new Date());
   });
