@@ -2,6 +2,7 @@ import { ListProductsUseCase } from '@catalog/application/usecases';
 import { ProductRepository } from '@catalog/application/repositories';
 import { mockProductRepository } from '@tests/utils/mocks/repositories';
 import { mockCreateProduct } from '@tests/utils/mocks/entities';
+import { throwError } from '@tests/utils/utils';
 import MockDate from 'mockdate';
 
 jest.mock('uuid', () => ({
@@ -52,5 +53,12 @@ describe('ListProductsUseCase', () => {
     const listSpy = jest.spyOn(productRepositoryStub, 'list');
     await sut.exec();
     expect(listSpy).toHaveBeenCalledWith();
+  });
+
+  test('Should throw if findById of ProductRepository throws', async () => {
+    const { sut, productRepositoryStub } = makeSut();
+    jest.spyOn(productRepositoryStub, 'list').mockImplementationOnce(throwError);
+    const promise = sut.exec();
+    await expect(promise).rejects.toThrow();
   });
 });
