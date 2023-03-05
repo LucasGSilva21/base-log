@@ -42,17 +42,36 @@ describe('Product Entity', () => {
     MockDate.reset();
   });
 
-  test('should create a new ProductEntity', () => {
+  test('should create a new ProductEntity sendind isActive field', () => {
     const {
-      sut, id, productName, priceInCents, amount, isActive, createdAt, updatedAt
+      id, productName, priceInCents, amount, isActive, createdAt, updatedAt
     } = makeSut();
-    expect(sut.id).toBe(id);
-    expect(sut.productName).toBe(productName);
-    expect(sut.priceInCents).toBe(priceInCents);
-    expect(sut.amount).toBe(amount);
-    expect(sut.isActive).toBe(isActive);
-    expect(sut.createdAt).toBe(createdAt);
-    expect(sut.updatedAt).toBe(updatedAt);
+    const product = ProductEntity.create({
+      id, productName, priceInCents, amount, isActive, createdAt, updatedAt
+    });
+    expect(product.id).toBe(id);
+    expect(product.productName).toBe(productName);
+    expect(product.priceInCents).toBe(priceInCents);
+    expect(product.amount).toBe(amount);
+    expect(product.isActive).toBe(isActive);
+    expect(product.createdAt).toBe(createdAt);
+    expect(product.updatedAt).toBe(updatedAt);
+  });
+
+  test('should create a new ProductEntity not sendind isActive field', () => {
+    const {
+      id, productName, priceInCents, amount, createdAt, updatedAt
+    } = makeSut();
+    const product = ProductEntity.create({
+      id, productName, priceInCents, amount, createdAt, updatedAt
+    });
+    expect(product.id).toBe(id);
+    expect(product.productName).toBe(productName);
+    expect(product.priceInCents).toBe(priceInCents);
+    expect(product.amount).toBe(amount);
+    expect(product.isActive).toBe(false);
+    expect(product.createdAt).toBe(createdAt);
+    expect(product.updatedAt).toBe(updatedAt);
   });
 
   test('should return correct values when call mapper', () => {
