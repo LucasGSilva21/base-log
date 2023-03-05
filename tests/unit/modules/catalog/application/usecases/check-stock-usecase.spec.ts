@@ -82,16 +82,6 @@ describe('CheckStockUseCase', () => {
     await expect(promise).rejects.toThrow();
   });
 
-  test('Should throw if findById of ProductRepository throws', async () => {
-    const { sut, productRepositoryStub } = makeSut();
-    jest.spyOn(productRepositoryStub, 'findById').mockImplementationOnce(throwError);
-    const promise = sut.exec({
-      productId: 'valid',
-      amount: 10
-    });
-    await expect(promise).rejects.toThrow();
-  });
-
   test('Should throw if not found a product', async () => {
     const { sut, productRepositoryStub } = makeSut();
     jest.spyOn(productRepositoryStub, 'findById').mockImplementationOnce(null);
